@@ -251,7 +251,7 @@ DEPENDENCIES
   jbuilder
   pg (~> 1.1)
   puma (~> 5.0)
-  rails (~> 7.0.3)
+  rails (~> 7.0.4, >= 7.0.4.2)
   rubocop
   rubocop-performance
   rubocop-rails
