@@ -235,7 +235,10 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.6)
+    yaml_db (0.7.0)
+      rails (>= 3.0)
+      rake (>= 0.8.7)
+    zeitwerk (2.6.7)
 
 PLATFORMS
   x86_64-linux
@@ -248,7 +251,7 @@ DEPENDENCIES
   jbuilder
   pg (~> 1.1)
   puma (~> 5.0)
-  rails (~> 7.0.3)
+  rails (~> 7.0.4, >= 7.0.4.2)
   rubocop
   rubocop-performance
   rubocop-rails
@@ -260,6 +263,7 @@ DEPENDENCIES
   tzinfo-data
   web-console
   webdrivers
+  yaml_db
 
 RUBY VERSION
    ruby 3.1.2p20
