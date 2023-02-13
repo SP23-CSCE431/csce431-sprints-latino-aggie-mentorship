@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :users
-  root 'user#index'
+  root 'users#index'
 
   #root to: 'dashboards#show'
   devise_for :admins, controllers: { omniauth_callbacks: 'admins/omniauth_callbacks' }
