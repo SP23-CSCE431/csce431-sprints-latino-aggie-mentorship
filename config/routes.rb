@@ -3,12 +3,15 @@ Rails.application.routes.draw do
   root 'sessions#home'
 
   resources :users
+  root 'users#index'
 
-  #Sessions routes
-  get '/login', to: 'sessions#login'
-  post '/login', to: 'sessions#create'
-  post '/logout', to: 'sessions#destroy'
-  get '/logout', to: 'sessions#destroy'
+  #root to: 'dashboards#show'
+  devise_for :admins, controllers: { omniauth_callbacks: 'admins/omniauth_callbacks' }
+  devise_scope :admin do
+    get 'admins/sign_in', to: 'admins/sessions#new', as: :new_admin_session
+    get 'admins/sign_out', to: 'admins/sessions#destroy', as: :destroy_admin_session
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
