@@ -1,0 +1,2 @@
+class Consulation < ApplicationRecord
+end
