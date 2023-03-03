@@ -26,8 +26,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - name: Setup Ruby
-        uses: actions/setup-ruby@v1
+      - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
       - uses: borales/actions-yarn@v2.0.0
