@@ -8,5 +8,7 @@
 
 <div>
   <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Destroy this user", @user, method: :delete %>
+
+  <%= button_to "Destroy this user", @user, method: :delete%>
 </div>
+
