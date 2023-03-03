@@ -1,3 +1,6 @@
+env:
+  RUBY_VERSION: 3.1.2
+
 name: CI/CD
 on: [push, pull_request]
 jobs:
@@ -26,7 +29,7 @@ jobs:
       - name: Setup Ruby
         uses: actions/setup-ruby@v1
         with:
-          ruby-version: 3.1.2
+          ruby-version: ${{ env.RUBY_VERSION }}
       - uses: borales/actions-yarn@v2.0.0
         with:
           cmd: install
