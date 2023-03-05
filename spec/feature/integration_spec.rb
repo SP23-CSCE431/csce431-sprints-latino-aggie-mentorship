@@ -1,14 +1,13 @@
 # location: spec/feature/integration_spec.rb
 require 'rails_helper'
 
-RSpec.describe 'Creating a user', type: :feature do
-  scenario 'valid inputs' do
+RSpec.describe "Creating a User", type: :feature do
+  scenario "with valid inputs" do
     visit new_user_path
-    fill_in 'user[name]', with: "john smith"
-    fill_in 'user[status]', with: "member"
-    fill_in 'user[year]', with: 2023
-    click_on 'Create User'
-    visit user_path
-    expect(page).to have_content('john smith')
+    fill_in 'Name', with: 'John Smith'
+    fill_in 'Status', with: 'Mentee'
+    fill_in 'Year', with: 2023
+    click_button "Create User"
+    expect(page).to have_content("John Smith")
   end
 end
