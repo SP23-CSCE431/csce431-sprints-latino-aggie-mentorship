@@ -8,5 +8,8 @@
 
 <div>
   <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= button_to "Delete this user", @user, method: :delete, data: {confirm: "Are you sure?"} %>
+
+
+  <%= button_to "Destroy this user", @user, method: :delete%>
 </div>
+
