@@ -74,6 +74,7 @@ GEM
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    cancan (1.6.10)
     capybara (3.38.0)
       addressable
       matrix
@@ -314,7 +315,8 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
-  capybara
+  cancan
+  capybara (>= 3.26)
   debug
   devise
   importmap-rails
@@ -325,6 +327,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.3)
+  rexml
   rspec-rails
   rubocop
   rubocop-performance
