@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :users
+  resources :consultations
   #root 'users#index'
 
+  get "pages", to: "pages#calendar", as: :pages
   root to: 'dashboards#show'
   devise_for :admins, controllers: { omniauth_callbacks: 'admins/omniauth_callbacks' }
   devise_scope :admin do
