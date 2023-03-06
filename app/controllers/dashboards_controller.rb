@@ -1,4 +1,6 @@
 class DashboardsController < ApplicationController
+
+  # this function is called in root route, determines what view to render based on who is currently logged in
   def show
     if current_admin.admin?
       render "dashboards/admin/admin"
