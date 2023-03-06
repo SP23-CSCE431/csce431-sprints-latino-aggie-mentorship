@@ -7,6 +7,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
+gem "cancan"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.3"
@@ -65,6 +66,7 @@ group :development, :test do
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -80,7 +82,9 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
+  gem "capybara", '>= 3.26'
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "simple_calendar", "~> 2.4"
