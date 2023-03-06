@@ -81,3 +81,7 @@ group :test do
 end
 
 gem "simple_calendar", "~> 2.4"
+
+group :development, :test do
+  gem "rspec-rails"
+end
