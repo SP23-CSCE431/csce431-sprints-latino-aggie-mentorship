@@ -316,6 +316,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  brakeman
   cancan
   capybara (>= 3.26)
   debug

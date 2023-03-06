@@ -8,7 +8,6 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
 gem "cancan"
-gem "rexml"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.3"
@@ -89,7 +88,3 @@ group :test do
 end
 
 gem "simple_calendar", "~> 2.4"
-
-group :development, :test do
-  gem "rspec-rails"
-end
