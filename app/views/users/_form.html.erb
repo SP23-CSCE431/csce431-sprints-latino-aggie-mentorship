@@ -26,6 +26,19 @@
     <%= form.number_field :year %>
   </div>
 
+  <%= form.fields_for :course_users do |course_user_form| %>
+    <%= course_user_form.fields_for :courses do |course_form| %>
+      <p>
+        <%= course_form.label :department, style: "display: block" %>
+        <%= course_form.text_field :department %>
+      </p>
+      <p>
+        <%= course_form.label :code, style: "display: block" %>
+        <%= course_form.text_field :code %>
+      </p>
+    <% end %>
+  <% end %>
+
   <div>
     <%= form.label :hour, style: "display: block" %>
     <%= form.number_field :hour %>
