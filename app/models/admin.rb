@@ -6,14 +6,13 @@ class Admin < ApplicationRecord
     create_with(uid: uid, full_name: full_name, avatar_url: avatar_url).find_or_create_by!(email: email)
   end
 
+  # called in dashboards_controller.rb, returns true/false based on role
   def admin?
     role == "admin"
   end
-
   def mentor?
     role == "mentor"
   end
-
   def mentee?
     role == "mentee"
   end
