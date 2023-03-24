@@ -25,15 +25,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_081128) do
     t.index ["email"], name: "index_admins_on_email", unique: true
   end
 
-  create_table "consulations", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "consultations", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -64,6 +55,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_081128) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "hour"
+    t.string "role"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end
