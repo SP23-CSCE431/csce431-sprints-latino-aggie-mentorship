@@ -12,28 +12,28 @@
   <% end %>
 
   <div>
-    <%= form.label :first_name, style: "display: block" %>
-    <%= form.text_field :first_name %>
+    <label for="first_name">First Name</label>
+    <%= form.text_field :first_name, disabled: false %>
   </div>
 
   <div>
     <%= form.label :last_name, style: "display: block" %>
-    <%= form.text_field :last_name %>
+    <%= form.text_field :last_name, disabled: false %>
   </div>
 
   <div>
     <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
+    <%= form.text_field :email, disabled: false %>
   </div>
 
   <div>
+    <%= form.label :role, style: "display: block" %>
     <%= form.select :role, [['Admin', 'admin'], ['Mentor', 'mentor'], ['Mentee', 'mentee']], {}, { style: "display: block" } %>
-    <%= form.text_field :role %>
   </div>
 
   <div>
     <%= form.label :year, style: "display: block" %>
-    <%= form.number_field :year %>
+    <%= form.select :year, [['Freshman', 'freshman'], ['Sophomore', 'sophomore'], ['Junior', 'junior'], ['Senior','senior'], ['Supersenior', 'supersenior'], ['Grad Student', 'grad student']], {}, { style: "display: block" } %>
   </div>
 
   <%= form.fields_for :course_users do |course_user_form| %>

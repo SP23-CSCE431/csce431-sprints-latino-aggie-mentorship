@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.feature "Google OAuth authentication", type: :feature do
   let(:admin_email) { 'connie.liu@tamu.edu' }
-  let(:mentor_email) { 'spottedelefant@tamu.edu' }
-  let(:mentee_email) { 'kyleblanco@tamu.edu' }
-  let(:guest_email) { 'michaelswim@tamu.edu' }
+  let(:mentor_email) { 'r_alzubaidi@tamu.edu' }
+  let(:mentee_email) { 'michaelswim@tamu.edu' }
+  let(:guest_email) { 'kyleblanco@tamu.edu' }
 
   before do
     OmniAuth.config.test_mode = true
