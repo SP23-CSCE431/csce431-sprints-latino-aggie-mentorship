@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-u1 = Admin.create(email: "connie.liu@tamu.edu", role: "admin")
-u2 = Admin.create(email: "r_alzubaidi@tamu.edu", role: "mentor")
-u3 = Admin.create(email: "michaelswim@tamu.edu", role: "mentee")
+u1 = Admin.create(email: "connie.liu@tamu.edu", role: "Admin")
+u2 = Admin.create(email: "r_alzubaidi@tamu.edu", role: "Mentor")
+u3 = Admin.create(email: "michaelswim@tamu.edu", role: "Mentee")
 u4 = Admin.create(email: "kyleblanco@tamu.edu")
