@@ -1,12 +1,17 @@
 <div id="<%= dom_id user %>">
   <p>
     <strong>Name:</strong>
-    <%= user.name %>
+    <%= user.first_name %> <%= user.last_name %>
   </p>
 
   <p>
-    <strong>Status:</strong>
-    <%= user.status %>
+    <strong>Email:</strong>
+    <%= user.email %>
+  </p>
+  
+  <p>
+    <strong>Role:</strong>
+    <%= user.role %>
   </p>
 
   <p>
@@ -14,17 +19,4 @@
     <%= user.year %>
   </p>
 
-  <p>
-    <strong>Hour:</strong>
-    <%= user.hour %>
-  </p>
-
-
-    <strong>Courses taken:</strong>
-    <ul>
-      <% user.courses.each do |course| %>
-        <li><%= course.department %> <%= course.code %></li>
-      <% end %>
-    </ul>
-  </p>
 </div>

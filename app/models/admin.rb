@@ -8,12 +8,12 @@ class Admin < ApplicationRecord
 
   # called in dashboards_controller.rb, returns true/false based on role
   def admin?
-    role == "admin"
+    role == "Admin"
   end
   def mentor?
-    role == "mentor"
+    role == "Mentor"
   end
   def mentee?
-    role == "mentee"
+    role == "Mentee"
   end
 end
