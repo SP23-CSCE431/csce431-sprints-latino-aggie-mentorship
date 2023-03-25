@@ -1,29 +1,38 @@
 <%= form_with(model: user) do |form| %>
-  <% if user.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
       <ul>
-        <% user.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
   <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <label for="user_first_name" style="display: block">First Name*</label>
+    <%= form.text_field :first_name, required: true, disabled: false %>
   </div>
 
   <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.text_field :status %>
+    <label for="user_first_name" style="display: block">Last Name*</label>
+    <%= form.text_field :last_name, required: true, disabled: false %>
+  </div>
+
+  <div>
+    <label for="user_first_name" style="display: block">Email*</label>
+    <%= form.text_field :email, required: true, disabled: false %>
+  </div>
+
+  <div>
+    <label for="user_first_name">Role*</label>
+    <%= form.select :role, [['Admin', 'Admin'], ['Mentor', 'Mentor'], ['Mentee', 'Mentee']], { include_blank: true }, { style: "display: block", required: true } %>
   </div>
 
   <div>
     <%= form.label :year, style: "display: block" %>
-    <%= form.number_field :year %>
+    <%= form.select :year, [['Freshman', 'Freshman'], ['Sophomore', 'Sophomore'], ['Junior', 'Junior'], ['Senior','Senior'], ['Supersenior', 'Supersenior'], ['Grad Student', 'Grad Student']], { include_blank: true }, { style: "display: block" } %>
   </div>
 
   <%= form.fields_for :course_users do |course_user_form| %>
@@ -38,11 +47,6 @@
       </p>
     <% end %>
   <% end %>
-
-  <div>
-    <%= form.label :hour, style: "display: block" %>
-    <%= form.number_field :hour %>
-  </div>
 
   <div>
     <%= form.submit %>
