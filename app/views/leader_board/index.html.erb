@@ -1,0 +1,25 @@
+<h1>LeaderBoard</h1>
+
+<table>
+  <thead>
+    <tr>
+    # Table Titles
+        <th>Rank</th>
+        <th>Mentor</th>
+        <th>Hours</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ranking.each do |rank| %>
+      <tr>
+        <td><%= @ranking.find_index(rank) + 1 %></td> # position 
+        <td><%= rank[0].name %></td> #from the mentor controller access the name of the user
+        <td> <%= rank[1] %> </td> # 
+        # <td><%= link_to 'See Profile', usera_path(rank[0].id) %> # have this access the user profile
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
