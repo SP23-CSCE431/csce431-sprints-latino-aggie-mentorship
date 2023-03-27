@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   # add new user to admin table if they do not already exist
-  before_create :check_admin_exists
+  # before_create :check_admin_exists
   after_create :create_admin_record
 
   # validates fields to require
@@ -41,7 +41,9 @@ class User < ApplicationRecord
 
   # otherwise, create Admin record with email and role
   def create_admin_record
-    Admin.create(email: email, role: role)
+    admin = Admin.find_or_initialize_by(email: self.email)
+    admin.role = self.role
+    admin.save
   end
 
 end
