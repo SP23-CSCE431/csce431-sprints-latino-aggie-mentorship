@@ -7,14 +7,14 @@ class Admin < ApplicationRecord
   end
 
   def admin?
-    role == "admin"
+    role = "admin"
   end
 
   def mentor?
-    role == "mentor"
+    role = "mentor"
   end
 
   def mentee?
-    role == "mentee"
+    role = "mentee"
   end
 end
