@@ -1,6 +1,16 @@
 <p style="color: green"><%= notice %></p>
 
+<div>
+  <%= link_to "Back to Admin Dashboard", root_path %>
+</div>
+
 <h1>Users</h1>
+
+<%= form_tag users_path, method: :get do %>
+    Department (CSCE, MEEN, ENGR, etc.):
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+<% end %>
 
 <div id="users">
   <% @users.each do |user| %>
@@ -12,3 +22,7 @@
 </div>
 
 <%= link_to "New user", new_user_path %>
+
+<br>
+
+<%= link_to "Return to all users", users_path %>

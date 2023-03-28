@@ -3,7 +3,8 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
-    @users = User.all
+    #Changed from @users = User.all in order to be able to show filtered users based on search term
+    @users = User.search(params[:search])
   end
 
   # GET /users/1 or /users/1.json
@@ -66,6 +67,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :status, :year)
+      params.require(:user).permit(:first_name, :last_name, :email, :role, :year, :search)
     end
 end

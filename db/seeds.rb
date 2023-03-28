@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+# u1 = Admin.create(email: "connie.liu@tamu.edu", role: "Admin")
+# u2 = Admin.create(email: "r_alzubaidi@tamu.edu", role: "Admin")
+# u3 = Admin.create(email: "michaelswim@tamu.edu", role: "Admin")
+# u4 = Admin.create(email: "kyleblanco@tamu.edu", role: "Admin")
+# u5 = Admin.create(email: "spottedelefant@tamu.edu", role: "Admin")
+# u6 = Admin.create(email: "jonathanpeng@tamu.edu", role: "Admin")
