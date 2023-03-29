@@ -56,6 +56,10 @@ class UsersController < ApplicationController
       if @user.check_single_admin_destroy
         # If the function call succeeds, delete the user
         @user.destroy
+        # Also delete the admin
+        admin = Admin.find_by(email: @user.email)
+        admin.destroy
+        
         format.html { redirect_to users_url, notice: "User was successfully destroyed." }
         format.json { head :no_content }
       else

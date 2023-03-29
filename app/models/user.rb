@@ -41,10 +41,13 @@ class User < ApplicationRecord
   end
 
   def check_single_admin_destroy
+    puts Admin.where(role: "Admin").count
     admin = Admin.find_or_initialize_by(email: self.email)
     if admin.role == "Admin" && Admin.where(role: "Admin").count == 1
       errors.add(self.email, "exists as the only admin. There must be at least one admin user.")
       return false
+    else
+      return true
     end
   end
 
