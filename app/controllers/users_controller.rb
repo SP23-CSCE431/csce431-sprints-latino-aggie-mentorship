@@ -59,6 +59,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def check_string
+    input_string = params[:input_string]
+    @model = Consultation.where(code: input_string).first
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
