@@ -11,6 +11,20 @@
     </div>
   <% end %>
 
+  <%
+=begin%>
+ <p>
+    <%= form.label :consultations %><br />
+    <% for consultation in Consultation.all %>
+      <%= check_box_tag "user[consultation_ids][]", consultation.id, @user.consultations.include?(consultation) %>
+      <%=h consultation.name %><br />
+      <% end %>
+  </p> 
+<%
+=end%>
+
+  <%= @user.consultations.ids %>
+
   <div>
     <%= form.label :name, style: "display: block" %>
     <%= form.text_field :name %>
