@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # add new user to admin table if they do not already exist
-  # before_create :check_admin_exists
   after_create :update_admin_record
+  before_update :check_single_admin
   after_update :update_admin_record
 
   # validates fields to require
@@ -29,6 +29,22 @@ class User < ApplicationRecord
       end
     else
       User.all
+    end
+  end
+
+  def check_single_admin
+    admin = Admin.find_or_initialize_by(email: self.email)
+    if admin.role == "Admin" && Admin.where(role: "Admin").count == 1 && self.role != "Admin"
+      errors.add(self.email, "exists as the only admin. There must be at least one admin user.")
+      throw(:abort)
+    end
+  end
+
+  def check_single_admin_destroy
+    admin = Admin.find_or_initialize_by(email: self.email)
+    if admin.role == "Admin" && Admin.where(role: "Admin").count == 1
+      errors.add(self.email, "exists as the only admin. There must be at least one admin user.")
+      return false
     end
   end
 
