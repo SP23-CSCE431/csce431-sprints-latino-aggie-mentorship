@@ -51,11 +51,21 @@ class UsersController < ApplicationController
 
   # DELETE /users/1 or /users/1.json
   def destroy
-    @user.destroy
-
     respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
-      format.json { head :no_content }
+      # Call the function in user.rb that could throw an error
+      if @user.check_single_admin_destroy
+        # If the function call succeeds, delete the user
+        @user.destroy
+        # Also delete the admin
+        admin = Admin.find_by(email: @user.email)
+        admin.destroy
+        
+        format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to user_url(@user), notice: "User could not be destroyed. There must be at least one admin user." }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
   end
 
