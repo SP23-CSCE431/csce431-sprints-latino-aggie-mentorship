@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     #get 'admins/sign_out', to: 'admins/sessions#destroy', as: :destroy_admin_session
   end
   get 'leaderboard'=>'leader_board#index'
+  get '/about', to: 'about#index' # This maps the "/about" path to the AboutController#index action
+  get '/contact', to: 'contact#index' # This maps the "/contact" path to the ContactController#index action
   
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
