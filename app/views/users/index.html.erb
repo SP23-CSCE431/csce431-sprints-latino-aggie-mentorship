@@ -1,43 +1,45 @@
 <div class="dashboard-header">
   <h1 class="dashboard-title">Admin Dashboard</h1>
-  <div class="sign-out"><%= button_to "Sign Out", destroy_admin_session_path %></div>
+  <div class="sign-out"><%= button_to "Sign Out", destroy_admin_session_path, class: "sign-in-out-button" %></div>
 </div>
 <nav>
   <ul>
-    <li><%= link_to "Manage Users", users_path %></li>
+    <li class="active"><%= link_to "Manage Users", users_path %></li>
     <li><%= link_to "Calendar", pages_path %></li>
   </ul>
 </nav>
 
-<h1>Users</h1>
+<div class="users-container">
+  <h1>Users</h1>
 
-<%= form_tag users_path, method: :get do %>
-    Department (CSCE, MEEN, ENGR, etc.):
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
-<% end %>
+  <%= form_tag users_path, method: :get do %>
+      Department (CSCE, MEEN, ENGR, etc.):
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Search", :name => nil %>
+  <% end %>
 
-<div id="users">
-  <table>
-    <thead>
-      <tr>
-        <th class="user-column">First Name</th>
-        <th class="user-column">Last Name</th>
-        <th class="user-column">Email</th>
-        <th class="user-column">Role</th>
-        <th class="user-column">Year</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @users.each do |user| %>
-        <%= render partial: 'user', locals: { user: user } %>
-      <% end %>
-    </tbody>
-  </table>
+  <div id="users">
+    <table>
+      <thead>
+        <tr>
+          <th class="user-column">First Name</th>
+          <th class="user-column">Last Name</th>
+          <th class="user-column">Email</th>
+          <th class="user-column">Role</th>
+          <th class="user-column">Year</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <%= render partial: 'user', locals: { user: user } %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <%= link_to "New user", new_user_path %>
+
+  <br>
+
+  <%= link_to "Return to all users", users_path %>
 </div>
-
-<%= link_to "New user", new_user_path %>
-
-<br>
-
-<%= link_to "Return to all users", users_path %>

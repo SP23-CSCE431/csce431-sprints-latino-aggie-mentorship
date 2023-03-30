@@ -1,6 +1,6 @@
 <div class="dashboard-header">
   <h1 class="dashboard-title">Admin Dashboard</h1>
-  <div class="sign-out"><%= button_to "Sign Out", destroy_admin_session_path %></div>
+  <div class="sign-out"><%= button_to "Sign Out", destroy_admin_session_path, class: "sign-in-out-button" %></div>
 </div>
 <nav>
   <ul>
@@ -9,6 +9,4 @@
   </ul>
 </nav>
 
-<h1>You're logged in! Welcome to the Admin Dashboard!</h1>
-
-<%= button_to "Sign Out", destroy_admin_session_path %>
+<h1 class="landing-page">You're logged in! Welcome to the Admin Dashboard!</h1>
