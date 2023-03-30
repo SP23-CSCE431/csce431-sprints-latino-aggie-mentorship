@@ -1,0 +1,25 @@
+<h1>Mentor Dashboard</h1>
+
+<div>
+    <%= form_for :post, url: mentors_path do |f| %>
+        <div>
+            <%= f.label :mentor_name, style: "display: block"  %>
+            <%= f.text_field :user_name %>
+        </div>
+        <br>
+        <div>
+            <%= f.label :hours_tutored, style: "display: block"  %>
+            <%= f.number_field :hours %>
+        </div>
+        <br>
+
+        <%= f.submit "Update hours", style: "display: block"  %>
+    <% end %>
+</div>
+<br>
+<% Mentor.all.each do |mentor| %>
+    <%= mentor.hours %>
+<% end %>
+
+<br>
+<%= button_to "Sign Out", destroy_admin_session_path %>
