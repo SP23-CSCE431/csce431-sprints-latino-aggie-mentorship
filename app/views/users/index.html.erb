@@ -1,8 +1,13 @@
-<p style="color: green"><%= notice %></p>
-
-<div>
-  <%= link_to "Back to Admin Dashboard", root_path %>
+<div class="dashboard-header">
+  <h1 class="dashboard-title">Admin Dashboard</h1>
+  <div class="sign-out"><%= button_to "Sign Out", destroy_admin_session_path %></div>
 </div>
+<nav>
+  <ul>
+    <li><%= link_to "Manage Users", users_path %></li>
+    <li><%= link_to "Calendar", pages_path %></li>
+  </ul>
+</nav>
 
 <h1>Users</h1>
 
@@ -13,12 +18,22 @@
 <% end %>
 
 <div id="users">
-  <% @users.each do |user| %>
-    <%= render user %>
-    <p>
-      <%= link_to "Show this user", user %>
-    </p>
-  <% end %>
+  <table>
+    <thead>
+      <tr>
+        <th class="user-column">First Name</th>
+        <th class="user-column">Last Name</th>
+        <th class="user-column">Email</th>
+        <th class="user-column">Role</th>
+        <th class="user-column">Year</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <%= render partial: 'user', locals: { user: user } %>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
 <%= link_to "New user", new_user_path %>

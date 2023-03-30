@@ -1,6 +1,21 @@
+<div class="dashboard-header">
+  <h1 class="dashboard-title">Admin Dashboard</h1>
+  <div class="sign-out"><%= button_to "Sign Out", destroy_admin_session_path %></div>
+</div>
+<nav>
+  <ul>
+    <li><%= link_to "Manage Users", users_path %></li>
+    <li><%= link_to "Calendar", pages_path %></li>
+  </ul>
+</nav>
+
 <div class="container mt-5 text-center">
-    <h1>Pages</h1>
-    <p>Find me in app/views/pages/calendar.html.erb</p>
+    <h1 id="consultation-notice">Pages</h1>
+    <% if notice %>
+        <div class="flash flash__notice">
+            <%= notice %>
+        </div>
+    <% end %>
     <%= month_calendar(events: @consultations) do |date, consultations| %>
         <div class="day">
             <%= date %>
@@ -26,5 +41,5 @@
             </div>
         <% end %>
     <% end %>
-    <%= link_to "Dashboard", root_path %>
+    <%= link_to "New consultation", new_consultation_path %>
 </div>

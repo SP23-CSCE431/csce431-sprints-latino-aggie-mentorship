@@ -78,3 +78,54 @@
 .has-events {
     background-color: #f0f0f0;
 }
+
+.dashboard-header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboard-title {
+    padding: 20px;
+}
+
+.sign-out {
+    position: absolute;
+    top: 30%;
+    right: 2%;
+}
+
+.user-column {
+    padding-left: 10px;
+    padding-right: 10px
+}
+
+nav {
+    background-color: #f5f5f5;
+    padding: 10px;
+}
+
+nav ul {
+    margin: 0;
+    /* padding: 0; */
+    list-style: none;
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+nav li {
+    /* margin-right: 20px; */
+}
+
+nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+}
+
+nav a:hover {
+    background-color: #333;
+    color: #fff;
+    transition: 0.3s
+}
