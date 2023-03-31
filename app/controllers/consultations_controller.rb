@@ -8,6 +8,15 @@ class ConsultationsController < ApplicationController
 
   # GET /consultations/1 or /consultations/1.json
   def show
+    if current_admin.admin?
+      render "consultations/show"
+    elsif current_admin.mentor?
+      render "consultations/member_show"
+    elsif current_admin.mentee?
+      render "consultations/member_show"
+    else
+      render "dashboards/guest/guest"
+    end
   end
 
   # GET /consultations/new
@@ -23,26 +32,30 @@ class ConsultationsController < ApplicationController
   def create
     @consultation = Consultation.new(consultation_params)
 
-    respond_to do |format|
-      if @consultation.save
+    begin
+      respond_to do |format|
+        @consultation.save
         format.html { redirect_to consultation_url(@consultation), notice: "Consultation was successfully created." }
         format.json { render :show, status: :created, location: @consultation }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @consultation.errors, status: :unprocessable_entity }
       end
+    rescue ActiveRecord::RecordNotUnique => e
+      flash[:notice] = "Sorry, an event with that attendance code already exists."
+      redirect_to consultations_url
     end
   end
 
   # PATCH/PUT /consultations/1 or /consultations/1.json
   def update
-    respond_to do |format|
-      if @consultation.update(consultation_params)
+    begin
+      respond_to do |format|
+        @consultation.update(consultation_params)
         format.html { redirect_to consultation_url(@consultation), notice: "Consultation was successfully updated." }
-        format.json { render :show, status: :ok, location: @consultation }
-      else
+        format.json { render :show, status: :created, location: @consultation }
+      end
+    rescue ActiveRecord::RecordNotUnique => e
+      flash[:notice] = "Sorry, an event with that attendance code already exists."
+      respond_to do |format|
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @consultation.errors, status: :unprocessable_entity }
       end
     end
   end
