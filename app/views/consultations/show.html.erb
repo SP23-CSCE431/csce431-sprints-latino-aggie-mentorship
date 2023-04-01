@@ -2,6 +2,12 @@
 
 <%= render @consultation %>
 
+<%= form_tag consultation_path, method: :get do %>
+    <strong>Attendance Code:</strong>
+    <%= text_field_tag :add_user_event, params[:code] %>
+    <%= submit_tag "Search", :name => nil %>
+<% end %>
+
 <div>
   <%= link_to "Edit this consultation", edit_consultation_path(@consultation) %> |
   <%= link_to "Back to consultations", consultations_path %>

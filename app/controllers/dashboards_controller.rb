@@ -12,4 +12,8 @@ class DashboardsController < ApplicationController
       render "dashboards/guest/guest"
     end
   end
+
+  def set_user_id
+    @user_id = params[:user_id]
+  end
 end

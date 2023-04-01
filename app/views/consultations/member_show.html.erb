@@ -2,6 +2,14 @@
 
 <%= render partial: 'consultations/member_consultation', locals: { object: @consultation } %>
 
+<p>
+  <strong>Attendance Code: </strong>
+  <%= form_tag(consultations_path, method: :get) do%>
+    <%= text_field_tag(:add_user_event, params[:code])%>
+    <%= submit_tag ("Submit") %>
+  <% end %>
+</p>
+
 <div>
   <%= link_to "Back to Calendar", pages_path %>
 </div>
