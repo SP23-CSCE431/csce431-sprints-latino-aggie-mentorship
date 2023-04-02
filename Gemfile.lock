@@ -75,6 +75,7 @@ GEM
       msgpack (~> 1.2)
     brakeman (5.4.1)
     builder (3.2.4)
+    cancan (1.6.10)
     capybara (3.38.0)
       addressable
       matrix
@@ -314,7 +315,8 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   brakeman
-  capybara
+  cancan
+  capybara (>= 3.26)
   debug
   devise
   importmap-rails
