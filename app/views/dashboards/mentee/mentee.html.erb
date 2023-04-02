@@ -1,11 +1,7 @@
 <h1>You're logged in! Welcome to the Mentee Dashboard!</h1>
-<<<<<<< HEAD
-<%= button_to "Sign Out", destroy_admin_session_path %>
 
 <p>Your points: <%= User.find_by(email:current_admin.email).points %></p>
 
 <%= link_to "Calendar", pages_path %>
-=======
 <%= link_to "Search for Mentors", search_path %>
 <%= button_to "Sign Out", destroy_admin_session_path %>
->>>>>>> 38d71fc (Added extra capability to search function and restricted searching for the Mentee Dashboard.)
