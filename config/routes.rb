@@ -2,7 +2,13 @@ Rails.application.routes.draw do
   resources :courses
   resources :users
   resources :user
+  resources :consultations do
+    member do
+      post :check_code
+    end
+  end
   resources :consultations
+  resources :user_events
   #root 'users#index'
 
   get "pages", to: "pages#calendar", as: :pages

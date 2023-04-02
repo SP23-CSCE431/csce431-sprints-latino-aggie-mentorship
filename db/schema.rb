@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_28_215158) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_02_202453) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,6 +33,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_28_215158) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "code"
+    t.integer "event_points"
+    t.index ["code"], name: "index_consultations_on_code", unique: true
   end
 
   create_table "course_users", force: :cascade do |t|
@@ -45,6 +47,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_28_215158) do
   create_table "courses", force: :cascade do |t|
     t.string "department"
     t.integer "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_events", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "consultation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -63,6 +72,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_28_215158) do
     t.string "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "points"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
