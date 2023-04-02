@@ -32,11 +32,15 @@ class ConsultationsController < ApplicationController
   def create
     @consultation = Consultation.new(consultation_params)
 
-    begin
-      respond_to do |format|
-        @consultation.save
-        format.html { redirect_to consultation_url(@consultation), notice: "Consultation was successfully created." }
-        format.json { render :show, status: :created, location: @consultation }
+
+    respond_to do |format|
+      if @consultation.save
+        format.html { redirect_to pages_path(anchor: "consultation-notice"), notice: "Consultation was successfully created." }
+        # format.json { render :show, status: :created, location: @consultation }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @consultation.errors, status: :unprocessable_entity }
+
       end
     rescue ActiveRecord::RecordNotUnique => e
       flash[:notice] = "Sorry, an event with that attendance code already exists."
