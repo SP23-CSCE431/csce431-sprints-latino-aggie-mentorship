@@ -9,37 +9,30 @@
   </ul>
 </nav>
 
-<div class="container mt-5 text-center">
-    <h1 id="consultation-notice">Pages</h1>
-    <% if notice %>
-        <div class="flash flash__notice">
-            <%= notice %>
-        </div>
-    <% end %>
-    <%= month_calendar(events: @consultations) do |date, consultations| %>
-        <div class="day">
-            <%= date %>
-        </div>
-        <% consultations.each do |consultation| %>
-            <div class="card-header">
-                <h5 class="card-title">
-                    <%= link_to consultation.title, consultation %>
-                </h5>
-            </div>
-            <div class="card-body">
-                <p class="card-text">
-                    <%= consultation.description %>
-                </p>
-            </div>
-            <div class="card-footer">
-                <p class="card-text">
-                    From: <%= consultation.start_time.strftime('%A, %B %d, %Y at %I:%M %p') %>
-                </p>
-                <p class="card-text">
-                    To: <%= consultation.end_time.strftime('%A, %B %d, %Y at %I:%M %p') %>
-                </p>
+<div class="backgroundBody">
+    <div class="container mt-5 text-center">
+        <h1 style="color: white;">Calendar</h1>
+        <% if notice %>
+            <div class="flash flash__notice">
+                <%= notice %>
             </div>
         <% end %>
-    <% end %>
-    <%= link_to "New consultation", new_consultation_path %>
+        <%= month_calendar(events: @consultations) do |date, consultations| %>
+            <div class="day">
+                <%= date.day %>
+            </div>
+            <% consultations.each do |consultation| %>
+                <div class="card-header2">
+                    <h5 class="card-title">
+                        <%= link_to consultation.title, consultation %>
+                    </h5>
+                    <p class="card-text">
+                        <%= consultation.start_time.strftime('%A, %I:%M %p') %>
+                        to <%= consultation.end_time.strftime('%A, %I:%M %p') %>
+                    </p>
+                </div>
+            <% end %>
+        <% end %>
+        <%= link_to "New consultation", new_consultation_path %>
+    </div>
 </div>
