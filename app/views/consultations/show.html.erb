@@ -2,12 +2,6 @@
 
 <%= render @consultation %>
 
-<%= form_tag check_code_consultation_path(@consultation), method: :post do %>
-  <%= hidden_field_tag :code, "" %>
-  <%= text_field_tag :code_input, "", placeholder: "Enter code" %>
-  <%= submit_tag "Check Code" %>
-<% end %>
-
 <div>
   <%= link_to "Edit this consultation", edit_consultation_path(@consultation) %> |
   <%= link_to "Back to consultations", consultations_path %>

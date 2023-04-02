@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     member do
       post :check_code
     end
-  end  
+  end
   resources :consultations
   resources :user_events
   #root 'users#index'
