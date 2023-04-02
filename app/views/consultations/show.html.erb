@@ -2,10 +2,10 @@
 
 <%= render @consultation %>
 
-<%= form_tag consultation_path, method: :get do %>
-    <strong>Attendance Code:</strong>
-    <%= text_field_tag :add_user_event, params[:code] %>
-    <%= submit_tag "Search", :name => nil %>
+<%= form_tag check_code_consultation_path(@consultation), method: :post do %>
+  <%= hidden_field_tag :code, "" %>
+  <%= text_field_tag :code_input, "", placeholder: "Enter code" %>
+  <%= submit_tag "Check Code" %>
 <% end %>
 
 <div>

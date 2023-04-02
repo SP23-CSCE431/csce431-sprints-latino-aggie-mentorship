@@ -2,13 +2,11 @@
 
 <%= render partial: 'consultations/member_consultation', locals: { object: @consultation } %>
 
-<p>
-  <strong>Attendance Code: </strong>
-  <%= form_tag(consultations_path, method: :get) do%>
-    <%= text_field_tag(:add_user_event, params[:code])%>
-    <%= submit_tag ("Submit") %>
-  <% end %>
-</p>
+<%= form_tag check_code_consultation_path(@consultation), method: :post do %>
+  <%= hidden_field_tag :code, "" %>
+  <%= text_field_tag :code_input, "", placeholder: "Enter code" %>
+  <%= submit_tag "Check Code" %>
+<% end %>
 
 <div>
   <%= link_to "Back to Calendar", pages_path %>

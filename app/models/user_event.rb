@@ -1,5 +1,6 @@
 class UserEvent < ApplicationRecord
     belongs_to :consultation
     belongs_to :user
-    accepts_nested_attributes_for :consultation
+    
+    validates :consultation_id, uniqueness: { scope: :user_id, message: "has already been attended by this user." }
 end
