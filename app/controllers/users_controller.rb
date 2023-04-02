@@ -36,6 +36,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def profile
+    user = User.find_by(email: request.env['omniauth.auth']['info']['email'])
+    @hours = user.hours if user.present?
+  end
+
   # PATCH/PUT /users/1 or /users/1.json
   def update
     respond_to do |format|
@@ -47,6 +52,18 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # POST
+  def add_hours
+    u1 = User.find_by(email:current_admin.email)
+    if u1.increment!(:hour, params[:hours].to_i)
+      u1.save
+      flash[:success] = "Hours updated successfully."
+    else
+      flash[:error] = "Unable to update hours."
+    end
+    render "dashboards/mentor/mentor"
   end
 
   # DELETE /users/1 or /users/1.json
@@ -82,6 +99,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :role, :year, :search, :points)
+      params.require(:user).permit(:first_name, :last_name, :email, :role, :year, :search, :points, :hour)
     end
 end

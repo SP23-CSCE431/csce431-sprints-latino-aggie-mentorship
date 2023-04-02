@@ -1,5 +1,4 @@
 class DashboardsController < ApplicationController
-
   # this function is called in root route, determines what view to render based on who is currently logged in
   def show
     if current_admin.admin?
@@ -11,9 +10,5 @@ class DashboardsController < ApplicationController
     else
       render "dashboards/guest/guest"
     end
-  end
-
-  def set_user_id
-    @user_id = params[:user_id]
   end
 end

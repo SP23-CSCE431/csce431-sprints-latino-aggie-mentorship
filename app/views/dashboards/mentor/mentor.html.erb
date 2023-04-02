@@ -1,2 +1,26 @@
-<h2>Mentor Dashboard</h2>
+<h1>Mentor Dashboard</h1>
+
+<div>
+<%= form_tag add_hours_user_path(User.find_by(email:current_admin.email)), method: :post do %>
+    <%= hidden_field_tag :hour, "" %>
+    <%= label_tag :hours, "Hours", style: "display: block" %>
+    <%= text_field_tag :hours, "" %>
+    
+    <%= submit_tag "Update Hours", style: "display: block" %>
+  <% end %>
+</div>
+<br>
+
+<div>
+    <div>
+        <h2> My Hours <h2>
+    </div>
+    <h3>
+            <%= (User.find_by(email:current_admin.email)).name %>:
+            <%= (User.find_by(email:current_admin.email)).hour %>
+            <br>
+    </h3>
+<div>
+
+<br>
 <%= button_to "Sign Out", destroy_admin_session_path %>

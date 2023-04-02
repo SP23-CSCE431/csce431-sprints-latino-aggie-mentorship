@@ -49,6 +49,11 @@
   <% end %>
 
   <div>
+    <%= form.label :hour, style: "display: block" %>
+    <%= form.number_field :hour %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>

@@ -58,5 +58,4 @@ class User < ApplicationRecord
     admin.role = self.role
     admin.save
   end
-
 end

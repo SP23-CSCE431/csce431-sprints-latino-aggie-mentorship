@@ -20,6 +20,16 @@ Rails.application.routes.draw do
     post 'admins/sign_out', to: 'admins/sessions#destroy', as: :destroy_admin_session
   end
 
+  #post "mentor" => "mentors#create"
+
+  #resources :mentors, only: [:index, :create]
+
+  # resources :mentor do
+  #   member do
+  #     patch 'update'
+  #   end
+  # end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
