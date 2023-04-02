@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :users
+  resources :users do
+    post 'add_hours', on: :member
+  end
   #root 'users#index'
   root to: 'dashboards#show'
   devise_for :admins, controllers: { omniauth_callbacks: 'admins/omniauth_callbacks' }
@@ -9,14 +11,15 @@ Rails.application.routes.draw do
     post 'admins/sign_out', to: 'admins/sessions#destroy', as: :destroy_admin_session
   end
 
-  resources :mentors
-  match 'mentor' => 'mentors#new', :via => [:post]
+  #post "mentor" => "mentors#create"
 
-  resources :mentor do
-    member do
-      patch 'update'
-    end
-  end
+  #resources :mentors, only: [:index, :create]
+
+  # resources :mentor do
+  #   member do
+  #     patch 'update'
+  #   end
+  # end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
