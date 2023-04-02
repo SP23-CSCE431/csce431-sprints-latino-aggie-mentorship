@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_05_231110) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_02_202453) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,19 +25,40 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_05_231110) do
     t.index ["email"], name: "index_admins_on_email", unique: true
   end
 
-  create_table "mentors", force: :cascade do |t|
-    t.string "name"
-    t.integer "hours"
+  create_table "consultations", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "code"
+    t.integer "event_points"
+    t.index ["code"], name: "index_consultations_on_code", unique: true
+  end
+
+  create_table "course_users", force: :cascade do |t|
+    t.integer "course_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string "department"
+    t.integer "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_events", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "consultation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "status"
-    t.integer "year"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "hour"
     t.string "role"
     t.string "email", default: "", null: false
@@ -45,6 +66,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_05_231110) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "status"
+    t.string "year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "points"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

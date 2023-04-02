@@ -1,23 +1,8 @@
-<div id="<%= dom_id user %>">
-  <p>
-    <strong>Name:</strong>
-    <%= user.name %>
-  </p>
-
-  <p>
-    <strong>Status:</strong>
-    <%= user.status %>
-  </p>
-
-  <p>
-    <strong>Year:</strong>
-    <%= user.year %>
-  </p>
-
-  <p>
-    <strong>Hour:</strong>
-    <%= user.hour %>
-  </p>
-
-
-</div>
+<tr id="<%= dom_id user %>">
+  <td class="user-column"><%= user.first_name %></td>
+  <td class="user-column"><%= user.last_name %></td>
+  <td class="user-column"><%= user.email %></td>
+  <td class="user-column"><%= user.role %></td>
+  <td class="user-column"><%= user.year %></td>
+  <td><%= link_to "Edit this user", edit_user_path(user)%>
+</tr>

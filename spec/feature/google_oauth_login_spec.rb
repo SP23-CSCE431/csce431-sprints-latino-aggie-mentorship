@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.feature "Google OAuth authentication", type: :feature do
   let(:admin_email) { 'connie.liu@tamu.edu' }
-  let(:mentor_email) { 'spottedelefant@tamu.edu' }
-  let(:mentee_email) { 'kyleblanco@tamu.edu' }
-  let(:guest_email) { 'michaelswim@tamu.edu' }
+  let(:mentor_email) { 'r_alzubaidi@tamu.edu' }
+  let(:mentee_email) { 'michaelswim@tamu.edu' }
+  let(:guest_email) { 'kyleblanco@tamu.edu' }
 
   before do
     OmniAuth.config.test_mode = true
@@ -23,7 +23,7 @@ RSpec.feature "Google OAuth authentication", type: :feature do
 
   scenario "Admin can sign in with Google OAuth" do
     email = admin_email
-    role = "admin"
+    role = "Admin"
     OmniAuth.config.mock_auth[:google_oauth2]['info']['email'] = email
     visit new_admin_session_path
     click_button "Sign in with Google"
@@ -33,7 +33,7 @@ RSpec.feature "Google OAuth authentication", type: :feature do
 
   scenario "Mentor can sign in with Google OAuth" do
     email = mentor_email
-    role = "mentor"
+    role = "Mentor"
     OmniAuth.config.mock_auth[:google_oauth2]['info']['email'] = email
     visit new_admin_session_path
     click_button "Sign in with Google"
@@ -43,7 +43,7 @@ RSpec.feature "Google OAuth authentication", type: :feature do
 
   scenario "Mentee can sign in with Google OAuth" do
     email = mentee_email
-    role = "mentee"
+    role = "Mentee"
     OmniAuth.config.mock_auth[:google_oauth2]['info']['email'] = email
     visit new_admin_session_path
     click_button "Sign in with Google"

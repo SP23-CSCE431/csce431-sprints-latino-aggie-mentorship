@@ -13,3 +13,179 @@
  *= require_tree .
  *= require_self
  */
+
+.container {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.backgroundBody {
+    background: rgb(69, 0, 18)  no-repeat center center fixed;
+}
+
+#signin {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.landing-page {
+    height: 30vh;
+    text-align: center;
+}
+
+.landing-page h2 {
+    padding: 10%;
+}
+
+.sign-in-out-button {
+    padding: 3%;
+    color: white;
+    background-color: black;
+    border: black solid 2px;
+}
+
+.sign-in-out-button:hover {
+    border: black solid 2px;
+    color: black;
+    background-color: white;
+    transition: 0.3s;
+}
+
+.simple-calendar {
+    width: 120%;
+    height: 200%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #ccc;
+    font-size: 17px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #fff;
+}
+.day {
+    padding: 5px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+  
+.wday-0 {
+    color: #f00;
+    width: 14%;
+}
+.wday-1 {
+    color: #000;
+    width: 14%;
+}
+.wday-2 {
+    color: #000;
+    width: 14%;
+}
+.wday-3 {
+    color: #000;
+    width: 14%;
+}
+.wday-4 {
+    color: #000;
+    width: 14%;
+}
+.wday-5 {
+    color: #000;
+    width: 14%;
+}
+.wday-6 {
+    color: #f00;
+    width: 14%;
+}
+
+.today {
+    background-color: #f0f0f0;
+}
+.past {
+    color: #ccc;
+}
+.future {
+    color: #000;
+}
+
+.start-date {
+    background-color: #f0f0f0;
+}
+
+.prev-month {
+    color: #ccc;
+}
+.next-month { 
+    color: #ccc;
+}
+.current-month {
+    color: #000;
+}
+
+.has-events {
+    background-color: #f0f0f0;
+}
+
+.dashboard-header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboard-title {
+    padding: 20px;
+}
+
+.sign-out {
+    width: 9vw;
+    position: absolute;
+    top: 30%;
+    right: 2%;
+}
+
+.user-column {
+    padding-left: 10px;
+    padding-right: 10px
+}
+
+nav {
+    background-color: #f5f5f5;
+    padding: 10px;
+}
+
+nav ul {
+    margin: 0;
+    /* padding: 0; */
+    list-style: none;
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+nav ul li.active a {
+    background-color: #b1b1b1;
+    color: #333;
+}
+
+nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+}
+
+nav a:hover {
+    background-color: #333;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.card-header2 {
+    padding: .5rem 1rem;
+    margin-bottom: 0;
+    background-color: #D0F0C0;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}

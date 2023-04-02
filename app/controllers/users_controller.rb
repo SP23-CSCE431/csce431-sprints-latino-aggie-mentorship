@@ -3,7 +3,8 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
-    @users = User.all
+    #Changed from @users = User.all in order to be able to show filtered users based on search term
+    @users = User.search(params[:search])
   end
 
   # GET /users/1 or /users/1.json
@@ -67,12 +68,27 @@ class UsersController < ApplicationController
 
   # DELETE /users/1 or /users/1.json
   def destroy
-    @user.destroy
-
     respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
-      format.json { head :no_content }
+      # Call the function in user.rb that could throw an error
+      if @user.check_single_admin_destroy
+        # If the function call succeeds, delete the user
+        @user.destroy
+        # Also delete the admin
+        admin = Admin.find_by(email: @user.email)
+        admin.destroy
+        
+        format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to user_url(@user), notice: "User could not be destroyed. There must be at least one admin user." }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
+  end
+
+  def check_string
+    input_string = params[:input_string]
+    @model = Consultation.where(code: input_string).first
   end
 
   private
@@ -83,6 +99,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :status, :year, :hour)
+      params.require(:user).permit(:first_name, :last_name, :email, :role, :year, :search, :points, :hour)
     end
 end
