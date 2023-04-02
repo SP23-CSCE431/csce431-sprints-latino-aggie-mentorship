@@ -3,8 +3,7 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
-    #Changed from @users = User.all in order to be able to show filtered users based on search term
-    @users = User.search(params[:search])
+    @users = User.all
   end
 
   # GET /users/1 or /users/1.json
@@ -73,11 +72,60 @@ class UsersController < ApplicationController
     input_string = params[:input_string]
     @model = Consultation.where(code: input_string).first
   end
+    
+  # SEARCH users
+  def search
+    #Changed from @users = User.all in order to be able to show filtered users based on search term
+    @users = search_helper(params[:search])
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+    end
+
+    # function designed to handle searching for users based on entered search params
+    def search_helper(search)
+      arr = search&.split
+      if arr
+        arr[0] = arr[0].upcase
+        #if only one 'word' is searched, then search all users for matching department
+        if arr.length == 1
+          # find all users where the input matches the department of a course they took
+          found_users = User.joins(:courses).where(courses: {department: arr[0]})
+          # if no users are found return all users, else return all found users
+          if found_users.size.zero?
+            respond_to do |format|
+              format.html { redirect_to search_url, alert: "Error: No user found taking a course in " + arr[0] + "." }
+            end
+            found_users = User.where(role: "Mentor")
+          else
+            found_users = found_users.where(role: "Mentor")
+          end
+        # if two separate strings are searched, then search all users for specific course (ie 'CSCE 431')
+        elsif arr.length == 2
+          # find all users where the input matches the department of a course they took
+          found_users = User.joins(:courses).where(courses: {department: arr[0], code: arr[1]})
+          # if no users are found return all users, else return all found users
+          if found_users.size.zero?
+            respond_to do |format|
+              format.html { redirect_to search_url, alert: "Error: No user found taking " + arr[0] + " " + arr[1] + "." }
+            end
+            found_users = User.where(role: "Mentor")
+          else
+            found_users = found_users.where(role: "Mentor")
+          end
+        else
+          respond_to do |format|
+            format.html { redirect_to search_url, alert: "Error: Invalid input. Please enter either a department or a course code." }
+          end
+          found_users = User.where(role: "Mentor")
+        end
+      else
+        found_users = User.where(role: "Mentor")
+      end
+      User.where(id: found_users)
     end
 
     # Only allow a list of trusted parameters through.

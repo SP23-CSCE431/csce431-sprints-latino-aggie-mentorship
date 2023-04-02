@@ -19,4 +19,12 @@
     <%= user.year %>
   </p>
 
+  <p>
+    <strong>Courses taken:</strong>
+    <ul>
+      <% user.courses.each do |course| %>
+        <li><%= course.department %> <%= course.code %></li>
+      <% end %>
+    </ul>
+  </p>
 </div>

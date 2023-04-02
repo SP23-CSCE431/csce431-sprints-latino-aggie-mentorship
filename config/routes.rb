@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :user_events
   #root 'users#index'
 
+  get "/search", to: "users#search"
+
   get "pages", to: "pages#calendar", as: :pages
   get '/check_string', to: 'users#check_string'
   root to: 'dashboards#show'
