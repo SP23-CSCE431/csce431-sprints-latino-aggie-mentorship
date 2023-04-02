@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :courses
-  resources :users
-  resources :user
+  resources :users do
+    post :add_hours, on: :member
+  end
   resources :consultations do
     member do
       post :check_code

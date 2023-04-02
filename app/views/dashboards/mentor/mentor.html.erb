@@ -16,7 +16,7 @@
         <h2> My Hours <h2>
     </div>
     <h3>
-            <%= (User.find_by(email:current_admin.email)).name %>:
+            <%= (User.find_by(email:current_admin.email)).first_name %>:
             <%= (User.find_by(email:current_admin.email)).hour %>
             <br>
     </h3>
