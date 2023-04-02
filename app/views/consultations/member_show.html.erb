@@ -1,0 +1,13 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render partial: 'consultations/member_consultation', locals: { object: @consultation } %>
+
+<%= form_tag check_code_consultation_path(@consultation), method: :post do %>
+  <%= hidden_field_tag :code, "" %>
+  <%= text_field_tag :code_input, "", placeholder: "Enter code" %>
+  <%= submit_tag "Check Code" %>
+<% end %>
+
+<div>
+  <%= link_to "Back to Calendar", pages_path %>
+</div>

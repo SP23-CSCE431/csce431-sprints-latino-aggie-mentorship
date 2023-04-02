@@ -12,6 +12,8 @@ class User < ApplicationRecord
   
   # implemented many to many relationship attribute
   has_many :course_users
+  has_many :user_events
+  has_many :consultations, through: :user_events
   has_many :courses, :through => :course_users
   accepts_nested_attributes_for :course_users
 
