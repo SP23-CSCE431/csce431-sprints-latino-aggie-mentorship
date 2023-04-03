@@ -1,5 +1,11 @@
 <h1>Mentor Dashboard</h1>
 
+<% if flash.any? %>
+    <% flash.each do |key, value| -%>
+        <section class="flash flash__<%= key %>"><%= value.html_safe %></section>
+    <% end -%>
+<% end %>
+
 <div>
 <%= form_tag add_hours_user_path(User.find_by(email:current_admin.email)), method: :post do %>
     <%= hidden_field_tag :hour, "" %>

@@ -3,6 +3,7 @@ class ConsultationsController < ApplicationController
 
   # GET /consultations or /consultations.json
   def index
+    authorize! :manage, @user
     @consultations = Consultation.all
   end
 
@@ -21,17 +22,20 @@ class ConsultationsController < ApplicationController
 
   # GET /consultations/new
   def new
+    authorize! :manage, @user
     @consultation = Consultation.new
   end
 
   # GET /consultations/1/edit
   def edit
+    authorize! :manage, @user
   end
 
   # POST /consultations or /consultations.json
   def create
-    @consultation = Consultation.new(consultation_params)
+    authorize! :manage, @user
 
+    @consultation = Consultation.new(consultation_params)
 
     respond_to do |format|
       if @consultation.save
@@ -50,6 +54,8 @@ class ConsultationsController < ApplicationController
 
   # PATCH/PUT /consultations/1 or /consultations/1.json
   def update
+    authorize! :read, @user
+
     begin
       respond_to do |format|
         @consultation.update(consultation_params)
@@ -66,6 +72,8 @@ class ConsultationsController < ApplicationController
 
   # DELETE /consultations/1 or /consultations/1.json
   def destroy
+    authorize! :manage, @user
+
     @consultation.destroy
 
     respond_to do |format|
