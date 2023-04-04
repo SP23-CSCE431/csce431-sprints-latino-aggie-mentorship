@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   #root 'users#index'
 
   get "/search", to: "users#search"
-
-  get "pages", to: "pages#calendar", as: :pages
+  get "/log_hours", to: "users#log_hours", as: :add_hours
+  get "/pages", to: "pages#calendar", as: :pages
   get '/check_string', to: 'users#check_string'
   root to: 'dashboards#show'
   devise_for :admins, controllers: { omniauth_callbacks: 'admins/omniauth_callbacks' }
