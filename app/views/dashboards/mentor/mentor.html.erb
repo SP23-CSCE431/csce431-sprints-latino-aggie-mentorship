@@ -1,26 +1,22 @@
-<h1>Mentor Dashboard</h1>
+<%= render "dashboard_header" %>
+
+<nav>
+  <ul>
+    <li><%= link_to "Log Tutoring Hours", add_hours_path %></li>
+    <li><%= link_to "Calendar", pages_path %></li>
+  </ul>
+</nav>
 
 <div>
-<%= form_tag add_hours_user_path(User.find_by(email:current_admin.email)), method: :post do %>
-    <%= hidden_field_tag :hour, "" %>
-    <%= label_tag :hours, "Hours", style: "display: block" %>
-    <%= text_field_tag :hours, "" %>
-    
-    <%= submit_tag "Update Hours", style: "display: block" %>
-  <% end %>
-</div>
-<br>
+    <% if notice %>
+        <div class="flash flash__notice">
+            <%= notice %>
+        </div>
+    <% end %>
 
-<div>
-    <div>
-        <h2> My Hours <h2>
+    <div class="hours">
+        <h2> Your Hours: <h2>
+        <h3><%= (User.find_by(email:current_admin.email)).hour %></h3>
     </div>
-    <h3>
-            <%= (User.find_by(email:current_admin.email)).first_name %>:
-            <%= (User.find_by(email:current_admin.email)).hour %>
-            <br>
-    </h3>
+    
 <div>
-
-<br>
-<%= button_to "Sign Out", destroy_admin_session_path %>

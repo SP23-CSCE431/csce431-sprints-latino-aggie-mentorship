@@ -32,7 +32,6 @@ class ConsultationsController < ApplicationController
   def create
     @consultation = Consultation.new(consultation_params)
 
-
     respond_to do |format|
       if @consultation.save
         format.html { redirect_to pages_path(anchor: "consultation-notice"), notice: "Consultation was successfully created." }
