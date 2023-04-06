@@ -1,11 +1,12 @@
 <div class="container">
   <h1>New event</h1>
 
+  <div>
+    <%= link_to "Back to Calendar", pages_path %>
+  </div>
+
   <%= render "form", consultation: @consultation %>
 
   <br>
 
-  <div>
-    <%= link_to "Back to events", consultations_path %>
-  </div>
 </div>
