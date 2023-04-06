@@ -2,15 +2,15 @@
 
 <%= link_to "Dashboard", root_path %>
 
-<h1>Consultations</h1>
+<h1>Events</h1>
 
 <div id="consultations">
   <% @consultations.each do |consultation| %>
     <%= render consultation %>
     <p>
-      <%= link_to "Show this consultation", consultation %>
+      <%= link_to "Show this event", consultation %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New consultation", new_consultation_path %>
+<%= link_to "New event", new_consultation_path %>
