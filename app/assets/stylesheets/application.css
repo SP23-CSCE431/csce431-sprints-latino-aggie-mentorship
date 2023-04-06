@@ -14,8 +14,9 @@
  *= require_self
  */
 
+
 .container {
-    height: 70vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,7 +24,14 @@
 }
 
 .backgroundBody {
-    background: rgb(69, 0, 18)  no-repeat center center fixed;
+    background-color: rgb(255, 255, 255);
+    height: 120vh;
+    width: 100vw; 
+    /*background-image: url("tree.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 120vh;
+    width: 100vw;*/
 }
 
 #signin {
@@ -57,12 +65,12 @@
 }
 
 .simple-calendar {
-    width: 120%;
-    height: 200%;
+    width: 100%;
+    height: 100vh;
     border-collapse: collapse;
     border-spacing: 0;
     border: 1px solid #ccc;
-    font-size: 17px;
+    font-size: 12px;
     font-family: Arial, sans-serif;
     color: #333;
     background-color: #fff;
@@ -75,31 +83,38 @@
   
 .wday-0 {
     color: #f00;
-    width: 14%;
+    width: 14.2vw;
+    height: 15vh;
 }
 .wday-1 {
     color: #000;
-    width: 14%;
+    width: 14.2vw;
+    height: 15vh;
 }
 .wday-2 {
     color: #000;
-    width: 14%;
+    width: 14.2vw;
+    height: 15vh;
 }
 .wday-3 {
     color: #000;
-    width: 14%;
+    width: 14.2vw;
+    height: 15vh;
 }
 .wday-4 {
     color: #000;
-    width: 14%;
+    width: 14.2vw;
+    height: 15vh;
 }
 .wday-5 {
     color: #000;
-    width: 14%;
+    width: 14.2vw;
+    height: 15vh;
 }
 .wday-6 {
     color: #f00;
-    width: 14%;
+    width: 14.2vw;
+    height: 15vh;
 }
 
 .today {
@@ -188,4 +203,9 @@ nav a:hover {
     margin-bottom: 0;
     background-color: #D0F0C0;
     border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.meetings {
+    height: 11vh;
+    overflow-y: scroll;
 }
