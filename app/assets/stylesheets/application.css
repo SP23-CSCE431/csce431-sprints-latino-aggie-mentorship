@@ -205,6 +205,192 @@ nav a:hover {
     border-bottom: 1px solid rgba(0,0,0,.125);
 }
 
+/*----------------------------edit.html.erb*/
+.form-box {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 600px;
+  }
+  
+  .form-box h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .form-box input[type="text"],
+  .form-box input[type="email"],
+  .form-box select,
+  .form-box textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .form-box input[type="submit"] {
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: rgba(255, 255, 255, 0.795);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+    transition: background-color 0.2s;
+  }
+  
+  .form-box input[type="submit"]:hover {
+    background-color: #0069d9;
+  }
+
+  .form-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #7fb7f3;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+  .form-button:hover {
+    background-color: #96c5f7;
+  }
+
+/* table styling  */
+.user-table{
+    padding-bottom: 12rem;
+  }
+  
+  #user-table td {
+    padding: 8px;
+    text-align: left;
+    vertical-align: top;
+    border: 1px solid #ddd;
+  }
+  
+  .user-column {
+    width: 15%;
+    
+  }
+  
+  .user-column:nth-child(1) {
+    font-weight: bold;
+  }  
+  .user-column:nth-child(5) {
+    font-style: italic;
+  }
+  .user-column ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .user-column li {
+    margin-bottom: 4px;
+  }
+  
+  .user-column strong {
+    display: block;
+    margin-bottom: 4px;
+  }
+  
+  .user-column a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .user-column a:hover {
+    text-decoration: underline;
+  }
+  .user-container {
+    margin: 20px;
+  }
+  
+  .user-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    text-align: left;
+
+  }
+  .users{
+      padding-bottom: 12rem;
+  }
+  .user-column {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .user-column:first-child {
+    border-top-left-radius: 5px;
+  }
+  
+  .user-column:last-child {
+    border-top-right-radius: 5px;
+  }
+  
+ 
+  
+
+  
+  .new-user-button{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #D0F0C0;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+  .new-user-button:hover {
+    background-color: #D0F0C0;
+  }
+
+  /*leader board styling  */
+  #leaderboard {
+    margin-top: 20px;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .rank-column {
+    width: 10%;
+  }
+  
+  .name-column {
+    width: 50%;
+  }
+  
+  .hours-column {
+    width: 20%;
+  }
+  
 .meetings {
     height: 11vh;
     overflow-y: scroll;
