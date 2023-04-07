@@ -157,67 +157,82 @@
 }
 
 .dashboard-header {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
 }
 
 .dashboard-title {
-    padding: 20px;
+  padding: 20px;
+}
+
+a.dashboard-title {
+  text-decoration: none;
+  color: black;
+}
+
+a.dashboard-title:hover {
+  text-decoration: none;
+  color: black;
 }
 
 .sign-out {
-    width: 9vw;
-    position: absolute;
-    top: 30%;
-    right: 2%;
+  width: 10vw;
+  position: absolute;
+  top: 30%;
+  right: 2%;
+}
+
+.hours {
+  padding: 3%;
 }
 
 .user-column {
-    padding-left: 10px;
-    padding-right: 10px
+  padding-left: 10px;
+  padding-right: 10px
 }
 
 nav {
-    background-color: #f5f5f5;
-    padding: 10px;
+  background-color: #f5f5f5;
+  padding: 10px;
 }
 
 nav ul {
-    margin: 0;
-    /* padding: 0; */
-    list-style: none;
-    display: flex;
-    /* justify-content: space-between; */
+  margin: 0;
+  /* padding: 0; */
+  list-style: none;
+  display: flex;
+  /* justify-content: space-between; */
 }
 
 nav ul li.active a {
-    background-color: #b1b1b1;
-    color: #333;
+  background-color: #b1b1b1;
+  color: #333;
 }
 
 nav a {
-    color: #333;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 10px;
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px;
 }
 
 nav a:hover {
-    background-color: #333;
-    color: #fff;
-    transition: 0.3s;
+  background-color: #333;
+  color: #fff;
+  transition: 0.3s;
 }
 
 .card-header2 {
-    padding: .5rem 1rem;
-    margin-bottom: 0;
-    background-color: #D0F0C0;
-    border-bottom: 1px solid rgba(0,0,0,.125);
+  padding: .5rem 1rem;
+  margin-bottom: 0;
+  background-color: #D0F0C0;
+  border-bottom: 1px solid rgba(0,0,0,.125);
 }
 
-/*----------------------------edit.html.erb*/
-.form-box {
+
+  /*----------------------------edit.html.erb*/
+  .form-box {
     background-color: #f5f5f5;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -276,8 +291,8 @@ nav a:hover {
     background-color: #96c5f7;
   }
 
-/* table styling  */
-.user-table{
+  /* table styling  */
+  .user-table{
     padding-bottom: 12rem;
   }
   

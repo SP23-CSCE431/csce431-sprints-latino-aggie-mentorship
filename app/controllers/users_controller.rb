@@ -53,16 +53,24 @@ class UsersController < ApplicationController
     end
   end
 
+  # GET
+  def log_hours
+    respond_to do |format|
+      format.html { render "dashboards/mentor/add_hours" }
+    end
+  end
+
   # POST
   def add_hours
-    u1 = User.find_by(email:current_admin.email)
-    if u1.increment!(:hour, params[:hours].to_i)
-      u1.save
-      flash[:success] = "Hours updated successfully."
-    else
-      flash[:error] = "Unable to update hours."
+    respond_to do |format|
+      u1 = User.find_by(email:current_admin.email)
+      if u1.increment!(:hour, params[:hours].to_i)
+        u1.save
+        format.html { redirect_to "/", notice: "Hours updated successfully." }
+      else
+        flash[:error] = "Unable to update hours."
+      end
     end
-    render "dashboards/mentor/mentor"
   end
 
   # DELETE /users/1 or /users/1.json
