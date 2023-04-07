@@ -10,8 +10,8 @@
 </nav>
 <div class="backgroundBody">
     <div class="container mt-5 text-center">
-        <h1 style="color: black;">Calendar</h1>
-        <%= link_to "Click to Make New Event", new_consultation_path, style: "color: green;" %>
+        <div class="form-button"><%= link_to "Create New Event", new_consultation_path %></div>
+        <br>
         <% if notice %>
             <div class="flash flash__notice">
                 <%= notice %>
@@ -25,11 +25,11 @@
                 <% consultations.each do |consultation| %>
                     <div class="card-header2">
                         <h5 class="card-title">
-                            <%= link_to consultation.title, consultation %>
+                            <%= link_to consultation.title, edit_consultation_path(consultation) %>
                         </h5>
                         <p class="card-text">
-                            <%= consultation.start_time.strftime('%A, %I:%M %p') %>
-                            to <%= consultation.end_time.strftime('%A, %I:%M %p') %>
+                            <%= consultation.start_time.strftime('%I:%M %p') %>
+                            to <%= consultation.end_time.strftime('%I:%M %p') %>
                         </p>
                     </div>
                 <% end %>

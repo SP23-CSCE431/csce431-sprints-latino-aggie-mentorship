@@ -75,6 +75,17 @@
     color: #333;
     background-color: #fff;
 }
+
+.calendar-title {
+  font-size: 32px;
+}
+
+.calendar-heading {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .day {
     padding: 5px;
     border: 1px solid #ccc;
