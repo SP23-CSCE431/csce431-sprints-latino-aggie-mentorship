@@ -5,13 +5,13 @@
 <nav>
   <ul>
     <li><%= link_to "Manage Users", users_path %></li>
-    <li><%= link_to "Calendar", pages_path %></li>
+    <li class="active"><%= link_to "Calendar", pages_path %></li>
   </ul>
 </nav>
-
 <div class="backgroundBody">
     <div class="container mt-5 text-center">
-        <h1 style="color: white;">Calendar</h1>
+        <h1 style="color: black;">Calendar</h1>
+        <%= link_to "Click to Make New Event", new_consultation_path, style: "color: green;" %>
         <% if notice %>
             <div class="flash flash__notice">
                 <%= notice %>
@@ -21,18 +21,19 @@
             <div class="day">
                 <%= date.day %>
             </div>
-            <% consultations.each do |consultation| %>
-                <div class="card-header2">
-                    <h5 class="card-title">
-                        <%= link_to consultation.title, consultation %>
-                    </h5>
-                    <p class="card-text">
-                        <%= consultation.start_time.strftime('%A, %I:%M %p') %>
-                        to <%= consultation.end_time.strftime('%A, %I:%M %p') %>
-                    </p>
-                </div>
-            <% end %>
+            <div class="meetings">
+                <% consultations.each do |consultation| %>
+                    <div class="card-header2">
+                        <h5 class="card-title">
+                            <%= link_to consultation.title, consultation %>
+                        </h5>
+                        <p class="card-text">
+                            <%= consultation.start_time.strftime('%A, %I:%M %p') %>
+                            to <%= consultation.end_time.strftime('%A, %I:%M %p') %>
+                        </p>
+                    </div>
+                <% end %>
+            </div>
         <% end %>
-        <%= link_to "New consultation", new_consultation_path %>
     </div>
 </div>
