@@ -1,9 +1,8 @@
-<div class="form-box">
-    <%= form_tag add_hours_user_path(User.find_by(email:current_admin.email)), method: :post do %>
-        <%= hidden_field_tag :hour, "" %>
-        <%= label_tag :hours, "Hours", style: "display: block" %>
-        <%= number_field_tag :hours, "", in: 0..100, step: 1 %>
-
-        <%= submit_tag "Update Hours", style: "display: block" %>
-    <% end %>
-</div>
+<%= form_tag add_hours_user_path(User.find_by(email:current_admin.email)), method: :post do %>
+    <%= hidden_field_tag :hour, "" %>
+    <%= label_tag :hours, "Hours"%>
+    <%= number_field_tag :hours, "", in: 0..100, step: 1 %>
+    <p>
+    <p>
+    <%= submit_tag "Submit" %>
+<% end %>
