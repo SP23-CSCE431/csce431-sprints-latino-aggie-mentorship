@@ -7,16 +7,12 @@
   </ul>
 </nav>
 
-<div>
+<div class="stats">
     <% if notice %>
         <div class="flash flash__notice">
             <%= notice %>
         </div>
     <% end %>
-
-    <div class="hours">
-        <h2> Your Hours: <h2>
-        <h3><%= (User.find_by(email:current_admin.email)).hour %></h3>
-    </div>
-    
-<div>
+    <h2>Your Hours: <h2>
+    <h3><%= (User.find_by(email:current_admin.email)).hour %></h3>
+</div>

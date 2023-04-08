@@ -8,6 +8,7 @@ class Consultation < ApplicationRecord
     validates :start_time, presence: true
     validates :end_time, presence: true
     validates :code, presence: true
+    validates :agree, acceptance: true
     scope :waiting_for_approval, -> (user_id) {where(status: false, user_id: user_id)}
 
 end

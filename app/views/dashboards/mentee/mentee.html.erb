@@ -1,7 +1,22 @@
-<h1>You're logged in! Welcome to the Mentee Dashboard!</h1>
+<%= render "dashboard_header" %>
 
-<p>Your points: <%= User.find_by(email:current_admin.email).points %></p>
+<nav>
+  <ul>
+    <li><%= link_to "Search for Mentors", search_path %></li>
+    <li><%= link_to "Calendar", pages_path %></li>
+  </ul>
+</nav>
 
-<%= link_to "Calendar", pages_path %>
-<%= link_to "Search for Mentors", search_path %>
-<%= button_to "Sign Out", destroy_admin_session_path %>
+<div>
+    <% if notice %>
+        <div class="flash flash__notice">
+            <%= notice %>
+        </div>
+    <% end %>
+
+    <div class="stats">
+        <h2>Your Points: <h2>
+        <h3><%= (User.find_by(email:current_admin.email)).points %></h3>
+    </div>
+    
+<div>
