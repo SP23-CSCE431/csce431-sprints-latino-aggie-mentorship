@@ -1,7 +1,5 @@
-<div class="dashboard-header">
-  <h1 class="dashboard-title">Admin Dashboard</h1>
-  <div class="sign-out"><%= button_to "Sign Out", destroy_admin_session_path, class: "sign-in-out-button" %></div>
-</div>
+<%= render "dashboards/dashboard_header" %>
+
 <nav>
   <ul>
     <li class="active"><%= link_to "Manage Users", users_path %></li>
@@ -19,3 +17,5 @@
     <%= link_to "Back to users", users_path %>
   </div>
 </div>
+
+<%= render "dashboards/dashboard_footer" %>

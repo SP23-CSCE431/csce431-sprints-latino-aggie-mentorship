@@ -1,4 +1,4 @@
-<%= render "dashboard_header" %>
+<%= render "dashboards/dashboard_header" %>
 
 <nav>
   <ul>
@@ -16,3 +16,5 @@
     <h2>Your Hours: <h2>
     <h3><%= (User.find_by(email:current_admin.email)).hour %></h3>
 </div>
+
+<%= render "dashboards/dashboard_footer" %>

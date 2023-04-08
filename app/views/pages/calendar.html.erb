@@ -1,10 +1,12 @@
 <%= render "dashboards/dashboard_header" %>
+
 <nav>
   <ul>
     <li><%= link_to "Manage Users", users_path %></li>
     <li class="active"><%= link_to "Calendar", pages_path %></li>
   </ul>
 </nav>
+
 <div class="backgroundBody">
     <div class="container mt-5 text-center">
         <div class="form-button"><%= link_to "Create New Event", new_consultation_path %></div>
@@ -34,3 +36,5 @@
         <% end %>
     </div>
 </div>
+
+<%= render "dashboards/dashboard_footer" %>
