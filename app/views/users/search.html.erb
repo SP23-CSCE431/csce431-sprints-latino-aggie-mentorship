@@ -1,0 +1,25 @@
+<div>
+  <%= render "dashboards/dashboard_header" %>
+</div>
+
+<nav>
+  <ul>
+    <li class="active"><%= link_to "Search for Mentors", search_path %></li>
+    <li><%= link_to "Calendar", pages_path %></li>
+  </ul>
+</nav>
+
+<div class="stats">
+  <%= form_tag search_path, method: :get do %>
+      Search mentors by Department (CSCE, MEEN, ENGR, etc.) or Course (CSCE 431, BUSN 101, etc.):
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Search", :name => nil %>
+  <% end %>
+
+  <div id="users">
+    <% @users.each do |user| %>
+      <%= render user %>
+      <p>-------------------------</p>
+    <% end %>
+  </div>
+</div>

@@ -1,22 +1,18 @@
-<div id="<%= dom_id user %>">
-  <p>
-    <strong>Name:</strong>
-    <%= user.first_name %> <%= user.last_name %>
-  </p>
-
-  <p>
-    <strong>Email:</strong>
-    <%= user.email %>
-  </p>
-  
-  <p>
-    <strong>Role:</strong>
-    <%= user.role %>
-  </p>
-
-  <p>
-    <strong>Year:</strong>
-    <%= user.year %>
-  </p>
-
-</div>
+<tr id="<%= dom_id user %>">
+  <td class="user-column"><%= user.first_name %></td>
+  <td class="user-column"><%= user.last_name %></td>
+  <td class="user-column"><%= user.email %></td>
+  <td class="user-column"><%= user.role %></td>
+  <td class="user-column"><%= user.year %></td>
+  <!--<td class="user-column">
+    <p>
+      <strong>Courses taken:</strong>
+      <ul>
+        <% user.courses.each do |course| %>
+          <li><%= course.department %> <%= course.code %></li>
+        <% end %>
+      </ul>
+    </p>
+  </td>-->
+  <td><div class="form-button"><%= link_to "Edit this user", edit_user_path(user)%></div></td>
+</tr>

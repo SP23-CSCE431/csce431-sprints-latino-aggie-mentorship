@@ -1,0 +1,35 @@
+<%= render "dashboards/dashboard_header" %>
+<nav>
+  <ul>
+    <li class="active"><%= link_to "Manage Users", users_path %></li>
+    <li><%= link_to "Calendar", pages_path %></li>
+  </ul>
+</nav>
+
+<h1>Mentors Leader board</h1>
+
+<div id="users">
+    <table>
+        <thead>
+        <tr>
+            <th class="user-column">Rank</th>
+            <th class="user-column">Name</th>
+            <th class="user-column">Hours</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @ranking.each do |rank| %>
+        <tr>
+            <td><%= @ranking.find_index(rank) + 1 %></td>
+            <td><%= rank[0].first_name %></td>
+            <td> <%= rank[1] %> </td>
+            <td><%= link_to 'See Profile', user_path(rank[0].id) %>
+        </tr>
+        <% end %>
+        </tbody>
+    </table>
+  </div>
+
+  <br>
+
+</div>
