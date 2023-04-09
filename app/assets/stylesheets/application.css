@@ -285,7 +285,7 @@ nav a:hover {
     background-color: #007bff;
     border: none;
     border-radius: 5px;
-    color: rgba(255, 255, 255, 0.795);
+    color: white;
     cursor: pointer;
     font-size: 16px;
     padding: 10px 20px;
@@ -296,10 +296,10 @@ nav a:hover {
     background-color: #0069d9;
   }
 
-  .form-button {
+  .form-box button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #7fb7f3;
+    background-color: #007bff;
     color: white;
     text-align: center;
     text-decoration: none;
@@ -307,9 +307,35 @@ nav a:hover {
     border-radius: 5px;
     margin-right: 10px;
   }
-  
-  .form-button:hover {
-    background-color: #96c5f7;
+
+  .form-box button a {
+    text-decoration: none;
+    color: white;
+  }
+
+  .form-box button a:hover {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .form-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+
+  .form-button a {
+    text-decoration: none;
+    color: white;
+  }
+
+  .form-button a:hover {
+    color: rgba(255, 255, 255, 0.85);
   }
 
   /* table styling  */
