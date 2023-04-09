@@ -1,7 +1,5 @@
-<div class="dashboard-header">
-  <a class="dashboard-title" href="/"><h1>Mentor Dashboard</h1></a>
-  <div class="sign-out"><%= button_to "Sign Out", destroy_admin_session_path, class: "sign-in-out-button" %></div>
-</div>
+<%= render "dashboards/dashboard_header" %>
+
 <nav>
   <ul>
     <li class="active"><%= link_to "Log Tutoring Hours", add_hours_path %></li>
@@ -15,3 +13,5 @@
   <p>
   <%= render "dashboards/mentor/hours_form" %>
 </div>
+
+<%= render "dashboards/dashboard_footer" %>
