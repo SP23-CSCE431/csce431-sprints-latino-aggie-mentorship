@@ -25,7 +25,7 @@ RSpec.feature "Google OAuth authentication", type: :feature do
     email = admin_email
     role = "Admin"
     OmniAuth.config.mock_auth[:google_oauth2]['info']['email'] = email
-    visit new_admin_session_path
+    visit "/admins/sign_in"
     click_button "Sign in with Google"
     expect(page).to have_content("Successfully authenticated from Google account.")
     expect(Admin.find_by(email: email, role: role)).not_to be_nil
@@ -35,7 +35,7 @@ RSpec.feature "Google OAuth authentication", type: :feature do
     email = mentor_email
     role = "Mentor"
     OmniAuth.config.mock_auth[:google_oauth2]['info']['email'] = email
-    visit new_admin_session_path
+    visit "/admins/sign_in"
     click_button "Sign in with Google"
     expect(page).to have_content("Successfully authenticated from Google account.")
     expect(Admin.find_by(email: email, role: role)).not_to be_nil
@@ -45,7 +45,7 @@ RSpec.feature "Google OAuth authentication", type: :feature do
     email = mentee_email
     role = "Mentee"
     OmniAuth.config.mock_auth[:google_oauth2]['info']['email'] = email
-    visit new_admin_session_path
+    visit "/admins/sign_in"
     click_button "Sign in with Google"
     expect(page).to have_content("Successfully authenticated from Google account.")
     expect(Admin.find_by(email: email, role: role)).not_to be_nil
@@ -55,7 +55,7 @@ RSpec.feature "Google OAuth authentication", type: :feature do
     email = guest_email
     role = nil
     OmniAuth.config.mock_auth[:google_oauth2]['info']['email'] = email
-    visit new_admin_session_path
+    visit "/admins/sign_in"
     click_button "Sign in with Google"
     expect(page).to have_content("Successfully authenticated from Google account.")
     expect(Admin.find_by(email: email, role: role)).not_to be_nil

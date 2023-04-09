@@ -19,7 +19,7 @@ RSpec.configure do |config|
     email = "connie.liu@tamu.edu"
     role = "Admin"
     OmniAuth.config.mock_auth[:google_oauth2]['info']['email'] = email
-    visit new_admin_session_path
+    visit "/admins/sign_in"
     click_button "Sign in with Google"
   end
 
