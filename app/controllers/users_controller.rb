@@ -47,7 +47,7 @@ class UsersController < ApplicationController
         format.html { redirect_to users_path, notice: "User was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { redirect_to users_url, notice: "User could not be updated. There must be at least one admin user." }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -91,7 +91,7 @@ class UsersController < ApplicationController
         format.html { redirect_to users_url, notice: "User was successfully destroyed." }
         format.json { head :no_content }
       else
-        format.html { redirect_to user_url(@user), notice: "User could not be destroyed. There must be at least one admin user." }
+        format.html { redirect_to users_url, notice: "User could not be destroyed. There must be at least one admin user." }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
