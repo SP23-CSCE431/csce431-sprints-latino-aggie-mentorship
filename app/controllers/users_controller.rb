@@ -73,6 +73,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def add_course
+    add_course_helper(params[:course])
+  end
+
   # DELETE /users/1 or /users/1.json
   def destroy
     respond_to do |format|
@@ -151,6 +155,44 @@ class UsersController < ApplicationController
         found_users = User.where(role: "Mentor")
       end
       User.where(id: found_users)
+    end
+
+    # function designed to handle adding a course to a mentor's profile
+    def add_course_helper(course)
+      arr = course&.split
+      if arr
+        arr[0] = arr[0].upcase
+        #if two separate strings are submitted, then continue
+        if arr.length == 2
+          # check if course already exists in course database
+          found_course = Course.find_by(department: arr[0], code: arr[1])
+          # if a course is found, then update join table to assign that course to the current user
+          if found_course
+            u1 = User.find_by(email:current_admin.email)
+            # check first if user already has that course in their profile
+            check_exists = CourseUser.find_by(course_id: found_course.id, user_id: u1.id)
+            if check_exists
+              flash[:alert] = "Error: Course already exists in your profile."
+              redirect_to "/add_course"
+              return
+            end
+            CourseUser.create(course_id: found_course.id, user_id: u1.id, created_at: Time.now, updated_at: Time.now)
+          # otherwise, add course to course database and then update join table to assign that course to the current user
+          else
+            Course.create(department: arr[0], code: arr[1], created_at: Time.now, updated_at: Time.now)
+            u1 = User.find_by(email:current_admin.email)
+            new_course = Course.find_by(department: arr[0], code: arr[1])
+            CourseUser.create(course_id: new_course.id, user_id: u1.id, created_at: Time.now, updated_at: Time.now)
+          end
+          respond_to do |format|
+            format.html { redirect_to "/add_course", notice: "Successfully added course to profile." }
+          end
+        #else if more or less than two strings are submitted, then there is an error
+        else
+          flash[:alert] = "Error: Invalid input. Please enter a valid course code."
+          redirect_to "/add_course"
+        end
+      end
     end
 
     # Only allow a list of trusted parameters through.
