@@ -101,6 +101,13 @@ class UsersController < ApplicationController
     input_string = params[:input_string]
     @model = Consultation.where(code: input_string).first
   end
+
+  # GET
+  def leaderMentor
+    respond_to do |format|
+      format.html { render "leader/leaderMentor" }
+    end
+  end
     
   # SEARCH users
   def search

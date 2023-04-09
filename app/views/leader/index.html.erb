@@ -9,30 +9,61 @@
 
 <h1>Mentors Leader board</h1>
 
-<div id="users">
-    <table>
-        <thead>
-        <tr>
-            <th class="user-column">Rank</th>
-            <th class="user-column">Name</th>
-            <th class="user-column">Hours</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% @ranking.each do |rank| %>
-        <tr>
-            <td><%= @ranking.find_index(rank) + 1 %></td>
-            <td><%= rank[0].first_name %></td>
-            <td> <%= rank[1] %> </td>
-            <td><%= link_to 'See Profile', user_path(rank[0].id) %>
-        </tr>
-        <% end %>
-        </tbody>
-    </table>
+<div class="table-container">
+  <div id="users">
+      <table>
+          <thead>
+          <tr>
+              <th class="user-column">Rank</th>
+              <th class="user-column">Name</th>
+              <th class="user-column">Hours</th>
+              <th class="user-column">Points</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @ranking1.each do |rank| %>
+          <tr>
+              <td><%= @ranking1.find_index(rank) + 1 %></td>
+              <td><%= rank[0].first_name %></td>
+              <td> <%= rank[1] %> </td>
+              <td> <%= rank[0].points %> </td>
+              <td><%= link_to 'See Profile', user_path(rank[0].id) %>
+          </tr>
+          <% end %>
+          </tbody>
+      </table>
+    </div>
+    <br>
   </div>
 
-  <br>
+  <h1>Mentees Leader board</h1>
 
+  <div id="users">
+      <table>
+          <thead>
+          <tr>
+              <th class="user-column">Rank</th>
+              <th class="user-column">Name</th>
+              <th class="user-column">Hours</th>
+              <th class="user-column">Points</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @ranking2.each do |rank| %>
+          <tr>
+              <td><%= @ranking2.find_index(rank) + 1 %></td>
+              <td><%= rank[0].first_name %></td>
+              <td> <%= rank[1] %> </td>
+              <td> <%= rank[0].points %> </td>
+              <td><%= link_to 'See Profile', user_path(rank[0].id) %>
+          </tr>
+          <% end %>
+          </tbody>
+      </table>
+    </div>
+    <br>
+  </div>
+
+
+  <%= render "dashboards/dashboard_footer" %>
 </div>
-
-<%= render "dashboards/dashboard_footer" %>

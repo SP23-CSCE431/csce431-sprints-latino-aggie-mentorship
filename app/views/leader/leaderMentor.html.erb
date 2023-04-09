@@ -1,0 +1,28 @@
+
+<div class="table-container">
+<div id="users">
+  <table>
+    <thead>
+      <tr>
+        <th class="user-column">Rank</th>
+        <th class="user-column">Name</th>
+        <th class="user-column">Hours</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @ranking.first(3).each do |rank| %>
+        <% if rank[1] > 0 %> 
+          <tr>
+            <td><%= @ranking.find_index(rank) + 1 %></td>
+            <td><%= rank[0].first_name %></td>
+            <td><%= link_to 'See Profile', user_path(rank[0].id) %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+</div>
+<%= render "dashboards/dashboard_footer" %>
