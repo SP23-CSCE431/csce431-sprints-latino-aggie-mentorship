@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   get "/search", to: "users#search"
   get "/log_hours", to: "users#log_hours", as: :add_hours
+  get "/add_course", to: "users#add_course", as: :add_courses
   get "/pages", to: "pages#calendar", as: :pages
   get "/faq", to: "dashboards#faq", as: :faq
   get '/check_string', to: 'users#check_string'
