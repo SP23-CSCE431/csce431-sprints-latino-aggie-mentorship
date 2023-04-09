@@ -8,14 +8,17 @@
 </nav>
 
 <div class="form-box">
+  <%= link_to "Back to Calendar", pages_path %>
+  <p>
   <h3>Edit Event</h3>
   <%= render "form", consultation: @consultation %>
 
   <br>
 
-  <div>
-    <div class="form-button"><%= link_to "Back to Calendar", pages_path %></div>
+  <div class="form-button" style="background-color:rgb(154, 27, 27)">
+    <%= link_to 'Delete this event', @consultation, method: :delete %>
   </div>
+
 </div>
 
 <%= render "dashboards/dashboard_footer" %>

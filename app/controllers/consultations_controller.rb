@@ -68,7 +68,7 @@ class ConsultationsController < ApplicationController
     @consultation.destroy
 
     respond_to do |format|
-      format.html { redirect_to consultations_url, notice: "Consultation was successfully destroyed." }
+      format.html { redirect_to pages_path, notice: "Consultation was successfully destroyed." }
       format.json { head :no_content }
     end
   end

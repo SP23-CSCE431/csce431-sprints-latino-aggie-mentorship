@@ -8,15 +8,11 @@
 </nav>
 
 <div class="form-box">
+  <%= link_to "Back to Calendar", pages_path %>
+  <p>
   <h3>New Event</h3>
 
   <%= render "form", consultation: @consultation %>
-
-  <br>
-
-  <div>
-    <div class="form-button"><%= link_to "Back to Calendar", pages_path %></div>
-  </div>
 </div>
 
 <%= render "dashboards/dashboard_footer" %>
