@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         session[:user_id] = @user.id
-        format.html { redirect_to user_url(@user), notice: "User was successfully created." }
+        format.html { redirect_to users_path, notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -73,6 +73,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def add_course
+    add_course_helper(params[:course])
+  end
+
+  def add_hobby
+    add_hobby_helper(params[:hobby])
+  end
+
   # DELETE /users/1 or /users/1.json
   def destroy
     respond_to do |format|
@@ -98,10 +106,16 @@ class UsersController < ApplicationController
     @model = Consultation.where(code: input_string).first
   end
     
-  # SEARCH users
+  # SEARCH users by department or class
   def search
     #Changed from @users = User.all in order to be able to show filtered users based on search term
     @users = search_helper(params[:search])
+  end
+
+  # SEARCH users by hobby
+  def search1
+    #Changed from @users = User.all in order to be able to show filtered users based on search term
+    @users = search1_helper(params[:search1])
   end
 
   private
@@ -115,42 +129,107 @@ class UsersController < ApplicationController
       arr = search&.split
       if arr
         arr[0] = arr[0].upcase
+        alert = ""
         #if only one 'word' is searched, then search all users for matching department
         if arr.length == 1
           # find all users where the input matches the department of a course they took
           found_users = User.joins(:courses).where(courses: {department: arr[0]})
-          # if no users are found return all users, else return all found users
-          if found_users.size.zero?
-            respond_to do |format|
-              format.html { redirect_to search_url, alert: "Error: No user found taking a course in " + arr[0] + "." }
-            end
-            found_users = User.where(role: "Mentor")
-          else
-            found_users = found_users.where(role: "Mentor")
-          end
+          alert = "Error: No user found taking a course in " + arr[0] + "."
         # if two separate strings are searched, then search all users for specific course (ie 'CSCE 431')
         elsif arr.length == 2
           # find all users where the input matches the department of a course they took
           found_users = User.joins(:courses).where(courses: {department: arr[0], code: arr[1]})
-          # if no users are found return all users, else return all found users
+          alert = "Error: No user found taking " + arr[0] + " " + arr[1] + "."
+        else
+          found_users = User.joins(:hobbies).where(hobbies: {name: search})
+          alert = "Error: Invalid course code or hobby does not exist. Please check your search terms for spelling."
+        end
+        # check if there are no found users (then check if the search term is a hobby), else 
+        if found_users.size.zero?
+          found_users = User.joins(:hobbies).where(hobbies: {name: search})
+          # if no users found with this hobby either, return all users and post alert
           if found_users.size.zero?
             respond_to do |format|
-              format.html { redirect_to search_url, alert: "Error: No user found taking " + arr[0] + " " + arr[1] + "." }
+              format.html { redirect_to search_url, alert: alert }
             end
             found_users = User.where(role: "Mentor")
           else
             found_users = found_users.where(role: "Mentor")
           end
         else
-          respond_to do |format|
-            format.html { redirect_to search_url, alert: "Error: Invalid input. Please enter either a department or a course code." }
-          end
-          found_users = User.where(role: "Mentor")
+          found_users = found_users.where(role: "Mentor")
         end
       else
         found_users = User.where(role: "Mentor")
       end
       User.where(id: found_users)
+    end
+
+    # function designed to handle adding a course to a mentor's profile
+    def add_course_helper(course)
+      arr = course&.split
+      if arr
+        arr[0] = arr[0].upcase
+        #if two separate strings are submitted, then continue
+        if arr.length == 2
+          # check if course already exists in course database
+          found_course = Course.find_by(department: arr[0], code: arr[1])
+          # if a course is found, then update join table to assign that course to the current user
+          if found_course
+            u1 = User.find_by(email:current_admin.email)
+            # check first if user already has that course in their profile
+            check_exists = CourseUser.find_by(course_id: found_course.id, user_id: u1.id)
+            if check_exists
+              flash[:alert] = "Error: Course already exists in your profile."
+              redirect_to "/add_course"
+              return
+            end
+            CourseUser.create(course_id: found_course.id, user_id: u1.id, created_at: Time.now, updated_at: Time.now)
+          # otherwise, add course to course database and then update join table to assign that course to the current user
+          else
+            Course.create(department: arr[0], code: arr[1], created_at: Time.now, updated_at: Time.now)
+            u1 = User.find_by(email:current_admin.email)
+            new_course = Course.find_by(department: arr[0], code: arr[1])
+            CourseUser.create(course_id: new_course.id, user_id: u1.id, created_at: Time.now, updated_at: Time.now)
+          end
+          respond_to do |format|
+            format.html { redirect_to "/add_course", notice: "Successfully added course to profile." }
+          end
+        #else if more or less than two strings are submitted, then there is an error
+        else
+          flash[:alert] = "Error: Invalid input. Please enter a valid course code."
+          redirect_to "/add_course"
+        end
+      end
+    end
+
+    # function designed to handle adding a hobby to a mentor's profile
+    def add_hobby_helper(hobby)
+      if hobby
+        # check if course already exists in course database
+        found_hobby = Hobby.find_by(name: hobby)
+        # if a course is found, then update join table to assign that course to the current user
+        if found_hobby
+          u1 = User.find_by(email: current_admin.email)
+          # check first if user already has that course in their profile
+          check_exists = HobbyUser.find_by(hobby_id: found_hobby.id, user_id: u1.id)
+          if check_exists
+            flash[:alert] = "Error: Hobby already exists in your profile."
+            redirect_to "/add_hobby"
+            return
+          end
+          HobbyUser.create(hobby_id: found_hobby.id, user_id: u1.id, created_at: Time.now, updated_at: Time.now)
+        # otherwise, add course to course database and then update join table to assign that course to the current user
+        else
+          Hobby.create(name: hobby, created_at: Time.now, updated_at: Time.now)
+          u1 = User.find_by(email: current_admin.email)
+          new_hobby = Hobby.find_by(name: hobby)
+          HobbyUser.create(hobby_id: new_hobby.id, user_id: u1.id, created_at: Time.now, updated_at: Time.now)
+        end
+        respond_to do |format|
+          format.html { redirect_to "/add_hobby", notice: "Successfully added hobby to profile." }
+        end
+      end
     end
 
     # Only allow a list of trusted parameters through.
