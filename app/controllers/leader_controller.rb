@@ -3,10 +3,11 @@ class LeaderController < ApplicationController
     def index 
         @ranking1 =rankerMentor()
         @ranking2 =rankerMentee()
+        @ranking3 =rankerMenteeMentorPoints()
     end 
     def leaderMentor 
         @ranking =rankerMentor()
-        @ranking2 =rankerMentee()
+        @ranking2 =rankerMenteeMentorPoints()
     end 
     
     
@@ -24,7 +25,16 @@ class LeaderController < ApplicationController
     def rankerMentee
         variables = []
         User.where(role: "Mentee").all.each do |user| # looping through the users ".each"
-            count = user.hour # only gets the number of hours where its true 
+            count = user.points # only gets the number of hours where its true 
+            variables.push([user,count]) # push it to the array 
+        end
+        # sort_by automatic ruby function 
+        return variables.sort_by{|var| var[1]}.reverse
+    end
+    def rankerMenteeMentorPoints
+        variables = []
+        User.all.each do |user| # looping through the users ".each"
+            count = user.points # only gets the number of hours where its true 
             variables.push([user,count]) # push it to the array 
         end
         # sort_by automatic ruby function 

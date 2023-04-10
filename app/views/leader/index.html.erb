@@ -26,9 +26,9 @@
           <tr>
               <td><%= @ranking1.find_index(rank) + 1 %></td>
               <td><%= rank[0].first_name %></td>
-              <td> <%= rank[1] %> </td>
+              <td> <%= rank[0].hour %> </td>
               <td> <%= rank[0].points %> </td>
-              <td><%= link_to 'See Profile', user_path(rank[0].id) %>
+     
           </tr>
           <% end %>
           </tbody>
@@ -45,7 +45,6 @@
           <tr>
               <th class="user-column">Rank</th>
               <th class="user-column">Name</th>
-              <th class="user-column">Hours</th>
               <th class="user-column">Points</th>
           </tr>
           </thead>
@@ -54,9 +53,8 @@
           <tr>
               <td><%= @ranking2.find_index(rank) + 1 %></td>
               <td><%= rank[0].first_name %></td>
-              <td> <%= rank[1] %> </td>
               <td> <%= rank[0].points %> </td>
-              <td><%= link_to 'See Profile', user_path(rank[0].id) %>
+             
           </tr>
           <% end %>
           </tbody>
@@ -66,5 +64,33 @@
   </div>
   </div>
 
+
+<div class="table-header"><h2> Points Leader board</h2></div>
+<div class="admin-table-container">
+  <div id="users">
+      <table>
+          <thead>
+          <tr>
+              <th class="user-column">Rank</th>
+              <th class="user-column">Name</th>
+              <th class="user-column">Points</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @ranking2.each do |rank| %>
+          <tr>
+              <td><%= @ranking2.find_index(rank) + 1 %></td>
+              <td><%= rank[0].first_name %></td>
+              <td> <%= rank[0].points %> </td>
+              
+          </tr>
+          <% end %>
+          </tbody>
+      </table>
+    </div>
+    <br>
+  </div>
+  </div>
+  
   <%= render "dashboards/dashboard_footer" %>
 </div>
