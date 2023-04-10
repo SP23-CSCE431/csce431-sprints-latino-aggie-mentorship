@@ -1,18 +1,10 @@
-<!--<%= render @consultation %>
-
-<div>
-  <%= link_to "Edit this event", edit_consultation_path(@consultation) %> |
-  <%= link_to "Back to events", consultations_path %>
-
-  <%= button_to "Destroy this event", @consultation, method: :delete %>
-</div>-->
-
 <%= render "dashboards/dashboard_header" %>
 
 <nav>
   <ul>
     <li><%= link_to "Manage Users", users_path %></li>
     <li class="active"><%= link_to "Calendar", pages_path %></li>
+    <li><%= link_to "Leaderboard", leader_path %></li>
   </ul>
 </nav>
 
