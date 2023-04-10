@@ -1,4 +1,4 @@
-# require 'rails_helper'
+require 'rails_helper'
 require 'capybara/rspec'
 require 'selenium-webdriver'
 
@@ -99,7 +99,7 @@ RSpec.feature "Remove Single Admin", type: :feature do
     click_button "Update User"
 
     # Expect to be redirected to the user's show page
-    expect(page).to have_current_path(user_path(User.last))
+    expect(page).to have_current_path("/users")
 
     # Expect success message to be displayed
     expect(page).to have_content("User was successfully updated.")

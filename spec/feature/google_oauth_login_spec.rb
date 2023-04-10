@@ -1,4 +1,4 @@
-# require 'rails_helper'
+require 'rails_helper'
 require 'capybara/rspec'
 require 'selenium-webdriver'
 

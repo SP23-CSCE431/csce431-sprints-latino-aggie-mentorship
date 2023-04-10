@@ -2,35 +2,36 @@ require 'rails_helper'
 require 'capybara/rspec'
 require 'selenium-webdriver'
 
-# RSpec.configure do |config|
-#   config.before(:each) do
-#     OmniAuth.config.test_mode = true
-#     OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
-#       'provider' => 'google_oauth2',
-#       'uid' => '123456789',
-#       'info' => {
-#         'email' => 'test@example.com'
-#       },
-#       'credentials' => {
-#         'token' => 'token',
-#         'expires_at' => Time.now + 1.week
-#       }
-#     })
-#     email = "connie.liu@tamu.edu"
-#     role = "Admin"
-#     OmniAuth.config.mock_auth[:google_oauth2]['info']['email'] = email
-#     visit "/admins/sign_in"
-#     click_button "Sign in with Google"
-#   end
+RSpec.configure do |config|
+  config.before(:each) do
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+      'provider' => 'google_oauth2',
+      'uid' => '123456789',
+      'info' => {
+        'email' => 'test@example.com'
+      },
+      'credentials' => {
+        'token' => 'token',
+        'expires_at' => Time.now + 1.week
+      }
+    })
+    email = "connie.liu@tamu.edu"
+    role = "Admin"
+    OmniAuth.config.mock_auth[:google_oauth2]['info']['email'] = email
+    visit new_admin_session_path
+    click_button "Sign in with Google"
+  end
 
-#   config.define_derived_metadata(:scenario) do |metadata|
-#     metadata[:type] = :feature
-#   end
-# end
+  config.define_derived_metadata(:scenario) do |metadata|
+    metadata[:type] = :feature
+  end
+end
 
 RSpec.feature "Create new user", type: :feature do
   scenario "User creates a new user with valid inputs" do
     visit "/users/new"
+    expect(page).to have_content("New user")
     
     # Fill in form fields
     fill_in "user_first_name", with: "John"
