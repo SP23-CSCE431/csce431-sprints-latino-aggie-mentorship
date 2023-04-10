@@ -8,6 +8,6 @@ class ApplicationController < ActionController::Base
 
     # rescue from AccessDenied error in CanCan
     rescue_from CanCan::AccessDenied do |exception|
-        redirect_to root_path, alert: exception.message
+        redirect_to root_path, notice: exception.message
     end
 end
