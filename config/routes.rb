@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     end
   end
   resources :user_events
+
   get "/leader", to: "leader#index"
   get "/leaderMentor", to: "leader#leaderMentor"
   get "/search", to: "users#search"

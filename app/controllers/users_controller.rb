@@ -1,26 +1,34 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
+  load_and_authorize_resource
 
   # GET /users or /users.json
   def index
+    authorize! :read, @user
     @users = User.all
   end
 
   # GET /users/1 or /users/1.json
   def show
+    authorize! :read, @user
+    @user = User.find(params[:id])
   end
 
   # GET /users/new
   def new
+    authorize! :manage, @user
     @user = User.new
   end
 
   # GET /users/1/edit
   def edit
+    authorize! :manage, @user
   end
 
   # POST /users or /users.json
   def create
+    authorize! :manage, @user
+
     @user = User.new(user_params)
 
     respond_to do |format|
@@ -42,6 +50,8 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1 or /users/1.json
   def update
+    authorize! :manage, @user
+
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to users_path, notice: "User was successfully updated." }
@@ -62,6 +72,8 @@ class UsersController < ApplicationController
 
   # POST
   def add_hours
+    authorize! :manage, User if current_admin.mentor?
+    
     respond_to do |format|
       u1 = User.find_by(email:current_admin.email)
       if u1.increment!(:hour, params[:hours].to_i)
