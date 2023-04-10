@@ -18,6 +18,11 @@
     <% end %>
     <h2>Your Hours: </h2>
     <h3><%= (User.find_by(email:current_admin.email)).hour %></h3>
+    <br>
+
+    <h2>Your Points: </h2>
+    <h3><%= (User.find_by(email:current_admin.email)).points %></h3>
+    <br>
 
     <h2>Your Classes: </h2>
     <h5>
@@ -27,6 +32,7 @@
         <% end %>
       </ul>
     </h5>
+    <br>
     
     <h2>Your Hobbies: </h2>
     <h5>
