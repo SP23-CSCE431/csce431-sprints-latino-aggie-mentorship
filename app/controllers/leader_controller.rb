@@ -4,8 +4,9 @@ class LeaderController < ApplicationController
         @ranking1 =rankerMentor()
         @ranking2 =rankerMentee()
     end 
-    def _leaderMentor 
+    def leaderMentor 
         @ranking =rankerMentor()
+        @ranking2 =rankerMentee()
     end 
     
     

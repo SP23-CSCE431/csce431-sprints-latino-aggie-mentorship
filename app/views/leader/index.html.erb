@@ -2,14 +2,15 @@
 
 <nav>
   <ul>
-    <li class="active"><%= link_to "Manage Users", users_path %></li>
+    <li ><%= link_to "Manage Users", users_path %></li>
     <li><%= link_to "Calendar", pages_path %></li>
+    <li class="active"><%= link_to "Leader Boards", leader_path %></li>
   </ul>
 </nav>
 
-<h1>Mentors Leader board</h1>
+<div class="table-header"><h2>Mentors Leader board</h2></div>
 
-<div class="table-container">
+<div class="admin-table-container">
   <div id="users">
       <table>
           <thead>
@@ -36,8 +37,8 @@
     <br>
   </div>
 
-  <h1>Mentees Leader board</h1>
-
+<div class="table-header"><h2>Mentees Leader board</h2></div>
+<div class="admin-table-container">
   <div id="users">
       <table>
           <thead>
@@ -63,7 +64,7 @@
     </div>
     <br>
   </div>
-
+  </div>
 
   <%= render "dashboards/dashboard_footer" %>
 </div>
