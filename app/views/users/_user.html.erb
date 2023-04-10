@@ -14,6 +14,15 @@
         </ul>
       </p>
     </td>
+    <td class="user-column">
+      <p>
+        <ul>
+          <% user.hobbies.each do |hobby| %>
+            <li><%= hobby.name %></li>
+          <% end %>
+        </ul>
+      </p>
+    </td>
   </tr>
 <% elsif current_admin.admin? %>
   <tr id="<%= dom_id user %>">

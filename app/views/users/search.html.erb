@@ -9,11 +9,14 @@
 
 <div class="stats">
   <%= form_tag search_path, method: :get do %>
-      Search mentors by Department (CSCE, MEEN, ENGR, etc.) or Course (CSCE 431, BUSN 101, etc.):
-      <%= text_field_tag :search, params[:search] %>
+      Search mentors by Department (CSCE, MEEN, ENGR, etc.) or by Course (CSCE 431, BUSN 101, etc.) or by Hobby:
+      <%= text_field_tag :search, params[:search], :required => 'required' %>
       <%= submit_tag "Search", :name => nil %>
   <% end %>
 
+  <p style="color: red"><%= alert %></p>
+  <p style="color: blue"><%= notice %></p>
+  
   <div class="user-container">
   <h1>Users</h1>
 
@@ -26,7 +29,8 @@
             <th class="user-column">Email</th>
             <th class="user-column">Role</th>
             <th class="user-column">Year</th>
-            <th class="user-column">Courses Taken</th>
+            <th class="user-column">Courses Taken</th>\
+            <th class="user-column">Hobbies</th>\
           </tr>
         </thead>
         <tbody>

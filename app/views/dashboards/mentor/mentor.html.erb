@@ -4,6 +4,7 @@
   <ul>
     <li><%= link_to "Log Tutoring Hours", add_hours_path %></li>
     <li><%= link_to "Add Courses to Profile", add_courses_path %></li>
+    <li><%= link_to "Add Hobbies to Profile", add_hobbies_path %></li>
     <li><%= link_to "Calendar", pages_path %></li>
     <li><%= link_to "Leader Boards", leaderMentor_path %></li>
   </ul>
@@ -17,6 +18,7 @@
     <% end %>
     <h2>Your Hours: </h2>
     <h3><%= (User.find_by(email:current_admin.email)).hour %></h3>
+
     <h2>Your Classes: </h2>
     <h5>
       <ul>
@@ -25,5 +27,15 @@
         <% end %>
       </ul>
     </h5>
+    
+    <h2>Your Hobbies: </h2>
+    <h5>
+      <ul>
+        <% User.find_by(email:current_admin.email).hobbies.each do |hobby| %>
+          <li><%= hobby.name %></li>
+        <% end %>
+      </ul>
+    </h5>
 </div>
+
 <%= render "dashboards/dashboard_footer" %>
