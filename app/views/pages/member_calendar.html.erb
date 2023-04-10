@@ -3,9 +3,7 @@
 <% if current_admin.mentor? %>
     <nav>
     <ul>
-        <li><%= link_to "Log Tutoring Hours", add_hours_path %></li>
-        <li><%= link_to "Add Courses to Profile", add_courses_path %></li>
-        <li><%= link_to "Add Hobbies to Profile", add_hobbies_path %></li>
+        <li><%= link_to "Log New Hours", add_hours_path %></li>
         <li class="active"><%= link_to "Calendar", pages_path %></li>
     </ul>
     </nav>
@@ -44,5 +42,3 @@
         <% end %>
     </div>
 </div>
-
-<%= render "dashboards/dashboard_footer" %>
