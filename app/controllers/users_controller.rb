@@ -72,8 +72,6 @@ class UsersController < ApplicationController
 
   # POST
   def add_hours
-    authorize! :manage, User if current_admin.mentor?
-    
     respond_to do |format|
       u1 = User.find_by(email:current_admin.email)
       if u1.increment!(:hour, params[:hours].to_i)
@@ -95,6 +93,8 @@ class UsersController < ApplicationController
 
   # DELETE /users/1 or /users/1.json
   def destroy
+    authorize! :manage, @user
+
     respond_to do |format|
       # Call the function in user.rb that could throw an error
       if @user.check_single_admin_destroy

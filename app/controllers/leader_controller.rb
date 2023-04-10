@@ -1,4 +1,6 @@
 class LeaderController < ApplicationController
+    before_action :authorize_mentor_mentee, only: :index
+
     # this controller list the users by how many hours they have done 
     def index 
         @ranking1 =rankerMentor()
@@ -39,5 +41,12 @@ class LeaderController < ApplicationController
         end
         # sort_by automatic ruby function 
         return variables.sort_by{|var| var[1]}.reverse
+    end
+
+    def authorize_mentor_mentee
+        authorize! :manage, :leader
+        rescue CanCan::AccessDenied
+        # Handle access denied error by redirecting or rendering an error page
+        redirect_to root_path, notice: "You are not authorized to access this page."
     end
 end
