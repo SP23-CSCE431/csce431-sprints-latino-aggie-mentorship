@@ -16,17 +16,17 @@
   </div>
 
   <div>
-    <label for="user_first_name" style="display: block">Last Name*</label>
+    <label for="user_last_name" style="display: block">Last Name*</label>
     <%= form.text_field :last_name, required: true, disabled: false %>
   </div>
 
   <div>
-    <label for="user_first_name" style="display: block">Email*</label>
+    <label for="user_email" style="display: block">Email*</label>
     <%= form.text_field :email, required: true, disabled: false %>
   </div>
 
   <div>
-    <label for="user_first_name">Role*</label>
+    <label for="user_role">Role*</label>
     <%= form.select :role, [['Admin', 'Admin'], ['Mentor', 'Mentor'], ['Mentee', 'Mentee']], { include_blank: true }, { style: "display: block", required: true } %>
   </div>
 
