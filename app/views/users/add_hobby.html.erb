@@ -5,17 +5,17 @@
 <nav>
   <ul>
     <li><%= link_to "Log Tutoring Hours", add_hours_path %></li>
-    <li class="active"><%= link_to "Add Courses to Profile", add_courses_path %></li>
-    <li><%= link_to "Add Hobbies to Profile", add_hobbies_path %></li>
+    <li><%= link_to "Add Courses to Profile", add_courses_path %></li>
+    <li class="active"><%= link_to "Add Hobbies to Profile", add_hobbies_path %></li>
     <li><%= link_to "Calendar", pages_path %></li>
   </ul>
 </nav>
 
 <div class="form-box">
-  <h3>Add Course</h3>
+  <h3>Add Hobby</h3>
   <p style="color: red"><%= alert %></p>
   <p style="color: blue"><%= notice %></p>
-  <%= render "add_course_form" %>
+  <%= render "add_hobby_form" %>
 </div>
 
 <%= render "dashboards/dashboard_footer" %>

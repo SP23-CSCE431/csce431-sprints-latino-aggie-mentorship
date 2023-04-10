@@ -329,12 +329,6 @@ nav a:hover {
     
   }
   
-  .user-column:nth-child(1) {
-    font-weight: bold;
-  }  
-  .user-column:nth-child(5) {
-    font-style: italic;
-  }
   .user-column ul {
     list-style-type: none;
     margin: 0;
