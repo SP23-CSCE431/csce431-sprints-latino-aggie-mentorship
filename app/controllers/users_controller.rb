@@ -47,7 +47,7 @@ class UsersController < ApplicationController
         format.html { redirect_to users_path, notice: "User was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { redirect_to users_url, notice: "User could not be updated. There must be at least one admin user." }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -95,7 +95,7 @@ class UsersController < ApplicationController
         format.html { redirect_to users_url, notice: "User was successfully destroyed." }
         format.json { head :no_content }
       else
-        format.html { redirect_to user_url(@user), notice: "User could not be destroyed. There must be at least one admin user." }
+        format.html { redirect_to users_url, notice: "User could not be destroyed. There must be at least one admin user." }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -105,17 +105,18 @@ class UsersController < ApplicationController
     input_string = params[:input_string]
     @model = Consultation.where(code: input_string).first
   end
+
+  # GET
+  def leaderMentor
+    respond_to do |format|
+      format.html { render "leader/leaderMentor" }
+    end
+  end
     
   # SEARCH users by department or class
   def search
     #Changed from @users = User.all in order to be able to show filtered users based on search term
     @users = search_helper(params[:search])
-  end
-
-  # SEARCH users by hobby
-  def search1
-    #Changed from @users = User.all in order to be able to show filtered users based on search term
-    @users = search1_helper(params[:search1])
   end
 
   private

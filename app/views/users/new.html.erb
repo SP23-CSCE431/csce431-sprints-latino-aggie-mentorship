@@ -4,18 +4,15 @@
   <ul>
     <li class="active"><%= link_to "Manage Users", users_path %></li>
     <li><%= link_to "Calendar", pages_path %></li>
+    <li><%= link_to "Leader Boards", leader_path %></li>
   </ul>
 </nav>
 <div class="form-box">
+  <%= link_to "Back to users", users_path %>
+  <p>
   <h1>New user</h1>
 
   <%= render "form", user: @user %>
-
-  <br>
-
-  <div>
-  <div class="form-button"><%= link_to "Back to Users", users_path %></div>
-  </div>
 </div>
 
 <%= render "dashboards/dashboard_footer" %>

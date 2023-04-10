@@ -11,7 +11,8 @@ Rails.application.routes.draw do
     end
   end
   resources :user_events
-
+  get "/leader", to: "leader#index"
+  get "/leaderMentor", to: "leader#leaderMentor"
   get "/search", to: "users#search"
   get "/log_hours", to: "users#log_hours", as: :add_hours
   get "/add_course", to: "users#add_course", as: :add_courses

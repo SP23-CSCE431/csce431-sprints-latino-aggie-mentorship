@@ -35,6 +35,16 @@
     <%= form.select :year, [['Freshman', 'Freshman'], ['Sophomore', 'Sophomore'], ['Junior', 'Junior'], ['Senior','Senior'], ['Supersenior', 'Supersenior'], ['Grad Student', 'Grad Student']], { include_blank: true }, { style: "display: block" } %>
   </div>
 
+  <div>
+    <label for="user_hour" style="display: block">Hours</label>
+    <%= form.text_field :hour, disabled: false %>
+  </div>
+
+  <div>
+    <label for="user_points" style="display: block">Points</label>
+    <%= form.text_field :points, disabled: false %>
+  </div>
+
   <%= form.fields_for :course_users do |course_user_form| %>
     <%= course_user_form.fields_for :courses do |course_form| %>
       <p>
@@ -49,6 +59,6 @@
   <% end %>
 
   <div>
-    <%= form.submit data: { confirm: 'Warning: All hour and point data will be lost. Are you sure you want to change the role?' } %>
+    <%= form.submit %>
   </div>
 <% end %>
