@@ -11,12 +11,12 @@
   <%= link_to "Back to Calendar", pages_path %>
   <p>
   <h3>Edit Event</h3>
-  
+
   <% if notice %>
-        <div class="flash flash__notice">
-            <%= notice %>
-        </div>
-    <% end %>
+    <div class="flash flash__notice">
+      <%= notice %>
+    </div>
+  <% end %>
 
   <%= render "form", consultation: @consultation %>
 

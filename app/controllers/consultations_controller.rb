@@ -34,16 +34,16 @@ class ConsultationsController < ApplicationController
 
     respond_to do |format|
       if @consultation.save
-        format.html { redirect_to pages_path(anchor: "consultation-notice"), notice: "Consultation was successfully created." }
+        format.html { redirect_to pages_path, notice: "Consultation was successfully created." }
         # format.json { render :show, status: :created, location: @consultation }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @consultation.errors, status: :unprocessable_entity }
 
       end
-    rescue ActiveRecord::RecordNotUnique => e
-      flash[:notice] = "Sorry, an event with that attendance code already exists."
-      redirect_to consultations_url
+      rescue ActiveRecord::RecordNotUnique => e
+        flash[:notice] = "Sorry, an event with that attendance code already exists."
+        format.html { render :new, status: :unprocessable_entity }
     end
   end
 

@@ -13,6 +13,12 @@
   <p>
   <h3>New Event</h3>
 
+  <% if notice %>
+    <div class="flash flash__notice">
+      <%= notice %>
+    </div>
+  <% end %>
+
   <%= render "form", consultation: @consultation %>
 </div>
 

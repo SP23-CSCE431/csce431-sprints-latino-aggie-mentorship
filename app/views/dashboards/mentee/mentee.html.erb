@@ -9,16 +9,16 @@
 </nav>
 
 <div>
-    <% if notice %>
-        <div class="flash flash__notice">
-            <%= notice %>
-        </div>
-    <% end %>
-
-    <div class="stats">
-        <h2>Your Points: <h2>
-        <h3><%= (User.find_by(email:current_admin.email)).points %></h3>
+  <% if notice %>
+    <div class="flash flash__notice">
+      <%= notice %>
     </div>
+  <% end %>
+
+  <div class="stats">
+    <h2>Your Points: <h2>
+    <h3><%= (User.find_by(email:current_admin.email)).points %></h3>
+  </div>
     
 <div>
 
