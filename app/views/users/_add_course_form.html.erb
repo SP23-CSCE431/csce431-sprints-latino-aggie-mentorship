@@ -1,5 +1,0 @@
-<%= form_tag add_courses_path, method: :get do %>
-    <p>Course Code (i.e. CSCE 431, BUSN 101, etc.)</p>
-    <%= text_field_tag :course, params[:course], :required => 'required' %>
-    <%= submit_tag "Submit", :name => nil %>
-<% end %>
