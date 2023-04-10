@@ -52,7 +52,7 @@ class ConsultationsController < ApplicationController
     begin
       respond_to do |format|
         @consultation.update(consultation_params)
-        format.html { redirect_to consultation_url(@consultation), notice: "Consultation was successfully updated." }
+        format.html { redirect_to pages_path, notice: "Consultation was successfully updated." }
         format.json { render :show, status: :created, location: @consultation }
       end
     rescue ActiveRecord::RecordNotUnique => e
