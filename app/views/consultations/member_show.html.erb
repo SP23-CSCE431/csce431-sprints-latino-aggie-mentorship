@@ -5,6 +5,7 @@
     <ul>
         <li><%= link_to "Log New Hours", add_hours_path %></li>
         <li class="active"><%= link_to "Calendar", pages_path %></li>
+        <li><%= link_to "Leader Boards", leader_path %></li>
     </ul>
     </nav>
 <% elsif current_admin.mentee? %>
@@ -12,6 +13,7 @@
     <ul>
         <li><%= link_to "Search for Mentors", search_path %></li>
         <li class="active"><%= link_to "Calendar", pages_path %></li>
+        <li><%= link_to "Leader Boards", leaderMentor_path %></li>
     </ul>
     </nav>
 <% end %>
