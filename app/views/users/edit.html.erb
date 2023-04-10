@@ -1,10 +1,24 @@
-<h1>Editing user</h1>
+<%= render "dashboards/dashboard_header" %>
 
-<%= render "form", user: @user %>
+<nav>
+  <ul>
+    <li class="active"><%= link_to "Manage Users", users_path %></li>
+    <li><%= link_to "Calendar", pages_path %></li>
+    <li><%= link_to "Leaderboard", leader_path %></li>
+  </ul>
+</nav>
 
-<br>
-
-<div>
-  <%= link_to "Show this user", @user %> |
+<div class="form-box">
   <%= link_to "Back to users", users_path %>
+  <p>
+  <h3>Edit User</h3>
+  <%= render "form", user: @user %>
+
+  <br>
+
+  <div class="form-button" style="background-color:rgb(154, 27, 27)">
+    <%= link_to 'Delete this user', @user, method: :delete, data: { confirm: "Are you sure?" } %>
+  </div>
 </div>
+
+<%= render "dashboards/dashboard_footer" %>

@@ -1,32 +1,47 @@
-<h1>Mentor Dashboard</h1>
+<%= render "dashboards/dashboard_header" %>
 
-<% if flash.any? %>
-    <% flash.each do |key, value| -%>
-        <section class="flash flash__<%= key %>"><%= value.html_safe %></section>
-    <% end -%>
-<% end %>
+<nav>
+  <ul>
+    <li><%= link_to "Log Tutoring Hours", add_hours_path %></li>
+    <li><%= link_to "Add Courses to Profile", add_courses_path %></li>
+    <li><%= link_to "Add Hobbies to Profile", add_hobbies_path %></li>
+    <li><%= link_to "Calendar", pages_path %></li>
+    <li><%= link_to "Leaderboard", leaderMentor_path %></li>
+  </ul>
+</nav>
 
-<div>
-<%= form_tag add_hours_user_path(User.find_by(email:current_admin.email)), method: :post do %>
-    <%= hidden_field_tag :hour, "" %>
-    <%= label_tag :hours, "Hours", style: "display: block" %>
-    <%= text_field_tag :hours, "" %>
+<div class="stats">
+    <% if notice %>
+        <div class="flash flash__notice">
+            <%= notice %>
+        </div>
+    <% end %>
+    <h2>Your Hours: </h2>
+    <h3><%= (User.find_by(email:current_admin.email)).hour %></h3>
+    <br>
+
+    <h2>Your Points: </h2>
+    <h3><%= (User.find_by(email:current_admin.email)).points %></h3>
+    <br>
+
+    <h2>Your Classes: </h2>
+    <h5>
+      <ul>
+        <% User.find_by(email:current_admin.email).courses.each do |course| %>
+          <li><%= course.department %> <%= course.code %></li>
+        <% end %>
+      </ul>
+    </h5>
+    <br>
     
-    <%= submit_tag "Update Hours", style: "display: block" %>
-  <% end %>
+    <h2>Your Hobbies: </h2>
+    <h5>
+      <ul>
+        <% User.find_by(email:current_admin.email).hobbies.each do |hobby| %>
+          <li><%= hobby.name %></li>
+        <% end %>
+      </ul>
+    </h5>
 </div>
-<br>
 
-<div>
-    <div>
-        <h2> My Hours <h2>
-    </div>
-    <h3>
-            <%= (User.find_by(email:current_admin.email)).first_name %>:
-            <%= (User.find_by(email:current_admin.email)).hour %>
-            <br>
-    </h3>
-<div>
-
-<br>
-<%= button_to "Sign Out", destroy_admin_session_path %>
+<%= render "dashboards/dashboard_footer" %>

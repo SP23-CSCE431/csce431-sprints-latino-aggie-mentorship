@@ -1,13 +1,46 @@
-<p style="color: green"><%= notice %></p>
+<%= render "dashboards/dashboard_header" %>
 
-<%= render partial: 'consultations/member_consultation', locals: { object: @consultation } %>
-
-<%= form_tag check_code_consultation_path(@consultation), method: :post do %>
-  <%= hidden_field_tag :code, "" %>
-  <%= text_field_tag :code_input, "", placeholder: "Enter code" %>
-  <%= submit_tag "Check Code" %>
+<% if current_admin.mentor? %>
+    <nav>
+    <ul>
+        <li><%= link_to "Log Tutoring Hours", add_hours_path %></li>
+        <li><%= link_to "Add Courses to Profile", add_courses_path %></li>
+        <li><%= link_to "Add Hobbies to Profile", add_hobbies_path %></li>
+        <li class="active"><%= link_to "Calendar", pages_path %></li>
+        <li><%= link_to "Leaderboard", leaderMentor_path %></li>
+    </ul>
+    </nav>
+<% elsif current_admin.mentee? %>
+    <nav>
+    <ul>
+        <li><%= link_to "Search for Mentors", search_path %></li>
+        <li class="active"><%= link_to "Calendar", pages_path %></li>
+        <li><%= link_to "Leaderboard", leaderMentor_path %></li>
+    </ul>
+    </nav>
 <% end %>
 
-<div>
+<div class="form-box">
   <%= link_to "Back to Calendar", pages_path %>
+
+  <p>
+
+  <h3>Event Check In</h3>
+
+
+  <%= render partial: 'consultations/member_consultation', locals: { object: @consultation } %>
+
+  <%= form_tag check_code_consultation_path(@consultation), method: :post do %>
+    <%= hidden_field_tag :code, "" %>
+    <%= text_field_tag :code_input, "", placeholder: "Enter attendance code" %>
+    <%= check_box_tag :agree, 1, false, required: true %>
+    <%= label_tag :agree, "On my honor, as an Aggie, I attended this event." %>
+    <p>
+    <p>
+    <%= submit_tag "Submit" %>
+  <% end %>
+
+  <p style="color: green"><%= notice %></p>
 </div>
+
+<%= render "dashboards/dashboard_footer" %>

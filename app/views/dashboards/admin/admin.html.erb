@@ -1,12 +1,13 @@
-<div class="dashboard-header">
-  <h1 class="dashboard-title">Admin Dashboard</h1>
-  <div class="sign-out"><%= button_to "Sign Out", destroy_admin_session_path, class: "sign-in-out-button" %></div>
-</div>
+<%= render "dashboards/dashboard_header" %>
+
 <nav>
   <ul>
     <li><%= link_to "Manage Users", users_path %></li>
     <li><%= link_to "Calendar", pages_path %></li>
+    <li><%= link_to "Leaderboard", leader_path %></li>
   </ul>
 </nav>
 
 <h1 class="landing-page">You're logged in! Welcome to the Admin Dashboard!</h1>
+
+<%= render "dashboards/dashboard_footer" %>

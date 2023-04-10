@@ -1,8 +1,17 @@
-<%= render @consultation %>
+<%= render "dashboards/dashboard_header" %>
 
-<div>
-  <%= link_to "Edit this consultation", edit_consultation_path(@consultation) %> |
-  <%= link_to "Back to consultations", consultations_path %>
+<nav>
+  <ul>
+    <li><%= link_to "Manage Users", users_path %></li>
+    <li class="active"><%= link_to "Calendar", pages_path %></li>
+    <li><%= link_to "Leaderboard", leader_path %></li>
+  </ul>
+</nav>
 
-  <%= button_to "Destroy this consultation", @consultation, method: :delete %>
+<div class="form-box">
+  <%= link_to "Back to Calendar", pages_path %>
+  <p>
+  <h5>Deleting this event will destroy all of its data. Are you sure you want to proceed?</h5>
+  <p>
+  <%= button_to "Confirm", @consultation, method: :delete %>
 </div>

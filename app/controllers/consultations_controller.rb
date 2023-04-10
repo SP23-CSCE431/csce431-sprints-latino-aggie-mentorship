@@ -34,21 +34,21 @@ class ConsultationsController < ApplicationController
   # POST /consultations or /consultations.json
   def create
     authorize! :manage, @user
-
+    
     @consultation = Consultation.new(consultation_params)
-
+    
     respond_to do |format|
       if @consultation.save
-        format.html { redirect_to pages_path(anchor: "consultation-notice"), notice: "Consultation was successfully created." }
+        format.html { redirect_to pages_path, notice: "Consultation was successfully created." }
         # format.json { render :show, status: :created, location: @consultation }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @consultation.errors, status: :unprocessable_entity }
 
       end
-    rescue ActiveRecord::RecordNotUnique => e
-      flash[:notice] = "Sorry, an event with that attendance code already exists."
-      redirect_to consultations_url
+      rescue ActiveRecord::RecordNotUnique => e
+        flash[:notice] = "Sorry, an event with that attendance code already exists."
+        format.html { render :new, status: :unprocessable_entity }
     end
   end
 
@@ -59,7 +59,7 @@ class ConsultationsController < ApplicationController
     begin
       respond_to do |format|
         @consultation.update(consultation_params)
-        format.html { redirect_to consultation_url(@consultation), notice: "Consultation was successfully updated." }
+        format.html { redirect_to pages_path, notice: "Consultation was successfully updated." }
         format.json { render :show, status: :created, location: @consultation }
       end
     rescue ActiveRecord::RecordNotUnique => e
@@ -77,7 +77,7 @@ class ConsultationsController < ApplicationController
     @consultation.destroy
 
     respond_to do |format|
-      format.html { redirect_to consultations_url, notice: "Consultation was successfully destroyed." }
+      format.html { redirect_to pages_path, notice: "Consultation was successfully destroyed." }
       format.json { head :no_content }
     end
   end

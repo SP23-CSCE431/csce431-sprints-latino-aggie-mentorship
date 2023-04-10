@@ -1,11 +1,25 @@
-<div class="container">
-  <h1>New consultation</h1>
+<%= render "dashboards/dashboard_header" %>
+
+<nav>
+  <ul>
+    <li><%= link_to "Manage Users", users_path %></li>
+    <li class="active"><%= link_to "Calendar", pages_path %></li>
+    <li><%= link_to "Leaderboard", leader_path %></li>
+  </ul>
+</nav>
+
+<div class="form-box">
+  <%= link_to "Back to Calendar", pages_path %>
+  <p>
+  <h3>New Event</h3>
+
+  <% if notice %>
+    <div class="flash flash__notice">
+      <%= notice %>
+    </div>
+  <% end %>
 
   <%= render "form", consultation: @consultation %>
-
-  <br>
-
-  <div>
-    <%= link_to "Back to consultations", consultations_path %>
-  </div>
 </div>
+
+<%= render "dashboards/dashboard_footer" %>

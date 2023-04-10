@@ -1,0 +1,4 @@
+<div class="dashboard-header">
+  <a class="dashboard-title" href="/"><h1><%= User.find_by(email:current_admin.email).role %> Dashboard</h1></a>
+  <div class="sign-out"><%= button_to "Sign Out", destroy_admin_session_path, class: "sign-in-out-button" %></div>
+</div>

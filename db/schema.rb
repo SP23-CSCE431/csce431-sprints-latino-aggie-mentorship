@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_02_202453) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_10_014515) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_02_202453) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "hobbies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "hobby_users", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "hobby_id"
+    t.integer "user_id"
+  end
+
   create_table "user_events", force: :cascade do |t|
     t.integer "user_id"
     t.integer "consultation_id"
@@ -59,7 +72,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_02_202453) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer "hour"
+    t.integer "hour", default: 0
     t.string "role"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -72,7 +85,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_02_202453) do
     t.string "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "points"
+    t.integer "points", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

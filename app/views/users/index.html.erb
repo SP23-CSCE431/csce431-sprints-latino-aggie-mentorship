@@ -1,18 +1,23 @@
-<div class="dashboard-header">
-  <h1 class="dashboard-title">Admin Dashboard</h1>
-  <div class="sign-out"><%= button_to "Sign Out", destroy_admin_session_path, class: "sign-in-out-button" %></div>
-</div>
+<%= render "dashboards/dashboard_header" %>
+
 <nav>
   <ul>
     <li class="active"><%= link_to "Manage Users", users_path %></li>
     <li><%= link_to "Calendar", pages_path %></li>
+    <li><%= link_to "Leaderboard", leader_path %></li>
   </ul>
 </nav>
+<div class="user-container">
+  <h1>Users</h1>
 
-<h1>Users</h1>
+  <% if notice %>
+    <div class="flash flash__notice">
+      <%= notice %>
+    </div>
+  <% end %>
 
   <div id="users">
-    <table>
+    <table class="user-table"> 
       <thead>
         <tr>
           <th class="user-column">First Name</th>
@@ -30,9 +35,16 @@
     </table>
   </div>
 
-  <%= link_to "New user", new_user_path %>
+  <br>
+
+  <div class="form-button" style="background-color:rgb(32, 154, 40)">
+    <%= link_to "Add User", new_user_path %>
+  </div>
 
   <br>
 
-  <%= link_to "Return to all users", users_path %>
+
+  </div>
 </div>
+
+<%= render "dashboards/dashboard_footer" %>

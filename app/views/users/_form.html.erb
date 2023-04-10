@@ -35,22 +35,14 @@
     <%= form.select :year, [['Freshman', 'Freshman'], ['Sophomore', 'Sophomore'], ['Junior', 'Junior'], ['Senior','Senior'], ['Supersenior', 'Supersenior'], ['Grad Student', 'Grad Student']], { include_blank: true }, { style: "display: block" } %>
   </div>
 
-  <%= form.fields_for :course_users do |course_user_form| %>
-    <%= course_user_form.fields_for :courses do |course_form| %>
-      <p>
-        <%= course_form.label :department, style: "display: block" %>
-        <%= course_form.text_field :department %>
-      </p>
-      <p>
-        <%= course_form.label :code, style: "display: block" %>
-        <%= course_form.text_field :code %>
-      </p>
-    <% end %>
-  <% end %>
+  <div>
+    <label for="user_hour" style="display: block">Hours</label>
+    <%= form.text_field :hour, disabled: false %>
+  </div>
 
   <div>
-    <%= form.label :hour, style: "display: block" %>
-    <%= form.number_field :hour %>
+    <label for="user_points" style="display: block">Points</label>
+    <%= form.text_field :points, disabled: false %>
   </div>
 
   <div>
