@@ -52,10 +52,15 @@ body {
 .landing-page {
     height: 30vh;
     text-align: center;
+    max-width: 30%;
+    margin: 0 auto;
 }
 
 .landing-page h2 {
     padding: 10%;
+}
+
+.landing-page p {
 }
 
 .sign-in-out-button {
