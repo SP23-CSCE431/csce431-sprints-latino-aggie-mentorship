@@ -1,4 +1,6 @@
 require 'rails_helper'
+require 'capybara/rspec'
+require 'selenium-webdriver'
 
 RSpec.feature "Google OAuth authentication", type: :feature do
   let(:admin_email) { 'connie.liu@tamu.edu' }
@@ -16,7 +18,7 @@ RSpec.feature "Google OAuth authentication", type: :feature do
       },
       'credentials' => {
         'token' => 'token',
-        'expires_at' => Time.now + 1.week
+        'expires_at' => Time.now
       }
     })
   end

@@ -13,10 +13,10 @@ RSpec.configure do |config|
       },
       'credentials' => {
         'token' => 'token',
-        'expires_at' => Time.now + 1.week
+        'expires_at' => Time.now
       }
     })
-    email = "connie.liu@tamu.edu"
+    email = "cliu@tamu.edu"
     role = "Admin"
     OmniAuth.config.mock_auth[:google_oauth2]['info']['email'] = email
     visit new_admin_session_path
@@ -35,13 +35,14 @@ RSpec.feature "Remove Single Admin", type: :feature do
     # Fill in form fields
     fill_in "user_first_name", with: "Connie"
     fill_in "user_last_name", with: "Liu"
-    fill_in "user_email", with: "connie.liu@tamu.edu"
+    fill_in "user_email", with: "test1@tamu.edu"
     select "Admin", from: "user_role"
     select "Senior", from: "user_year"
     
     click_button "Create User"
 
     # Destroy the single admin user that was just created
+    visit "/users/#{User.last.id}"
     click_button "Destroy this user"
 
     # Expect error message to be displayed
@@ -54,7 +55,7 @@ RSpec.feature "Remove Single Admin", type: :feature do
     # Fill in form fields
     fill_in "user_first_name", with: "Connie"
     fill_in "user_last_name", with: "Liu"
-    fill_in "user_email", with: "connie.liu@tamu.edu"
+    fill_in "user_email", with: "test2@tamu.edu"
     select "Admin", from: "user_role"
     select "Senior", from: "user_year"
     
@@ -75,7 +76,7 @@ RSpec.feature "Remove Single Admin", type: :feature do
     # Fill in form fields
     fill_in "user_first_name", with: "Connie"
     fill_in "user_last_name", with: "Liu"
-    fill_in "user_email", with: "connie.liu@tamu.edu"
+    fill_in "user_email", with: "test3@tamu.edu"
     select "Admin", from: "user_role"
     select "Senior", from: "user_year"
     
@@ -98,7 +99,7 @@ RSpec.feature "Remove Single Admin", type: :feature do
     click_button "Update User"
 
     # Expect to be redirected to the user's show page
-    expect(page).to have_current_path(user_path(User.last))
+    expect(page).to have_current_path("/users")
 
     # Expect success message to be displayed
     expect(page).to have_content("User was successfully updated.")

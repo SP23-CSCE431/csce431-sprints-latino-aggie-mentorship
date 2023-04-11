@@ -31,6 +31,7 @@ end
 RSpec.feature "Create new user", type: :feature do
   scenario "User creates a new user with valid inputs" do
     visit "/users/new"
+    expect(page).to have_content("New user")
     
     # Fill in form fields
     fill_in "user_first_name", with: "John"
