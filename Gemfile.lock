@@ -75,7 +75,7 @@ GEM
       msgpack (~> 1.2)
     brakeman (5.4.1)
     builder (3.2.4)
-    cancan (1.6.10)
+    cancancan (3.5.0)
     capybara (3.38.0)
       addressable
       matrix
@@ -98,6 +98,7 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.5.0)
+    docile (1.4.0)
     erubi (1.12.0)
     faraday (2.7.4)
       faraday-net_http (>= 2.0, < 3.1)
@@ -267,6 +268,12 @@ GEM
       websocket (~> 1.0)
     simple_calendar (2.4.3)
       rails (>= 3.0)
+    simplecov (0.22.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.12.3)
+    simplecov_json_formatter (0.1.4)
     snaky_hash (2.0.1)
       hashie
       version_gem (~> 1.1, >= 1.1.1)
@@ -317,7 +324,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   brakeman
-  cancan
+  cancancan
   capybara (>= 3.26)
   debug
   devise
@@ -337,6 +344,7 @@ DEPENDENCIES
   rubocop-rspec
   selenium-webdriver
   simple_calendar (~> 2.4)
+  simplecov
   sprockets-rails
   stimulus-rails
   turbo-rails

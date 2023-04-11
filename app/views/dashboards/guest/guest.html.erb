@@ -1,2 +1,7 @@
-<h2>Guest Dashboard</h2>
-<%= button_to "Sign Out", destroy_admin_session_path %>
+<div id="signin">
+    <div class="landing-page">
+        <h3>Howdy!</h3>
+        <p>You are currently signed in as a guest and have not been assigned a role in the web application. If you think this is a mistake, please contact a LAMP officer to update your role.</p>
+        <%= button_to "Sign Out", destroy_admin_session_path, class: "sign-in-out-button" %>
+    </div>
+</div>

@@ -3,6 +3,7 @@ class ConsultationsController < ApplicationController
 
   # GET /consultations or /consultations.json
   def index
+    authorize! :manage, @user
     @consultations = Consultation.all
   end
 
@@ -21,38 +22,44 @@ class ConsultationsController < ApplicationController
 
   # GET /consultations/new
   def new
+    authorize! :manage, @user
     @consultation = Consultation.new
   end
 
   # GET /consultations/1/edit
   def edit
+    authorize! :manage, @user
   end
 
   # POST /consultations or /consultations.json
   def create
+    authorize! :manage, @user
+    
     @consultation = Consultation.new(consultation_params)
-
+    
     respond_to do |format|
       if @consultation.save
-        format.html { redirect_to pages_path(anchor: "consultation-notice"), notice: "Consultation was successfully created." }
+        format.html { redirect_to pages_path, notice: "Consultation was successfully created." }
         # format.json { render :show, status: :created, location: @consultation }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @consultation.errors, status: :unprocessable_entity }
 
       end
-    rescue ActiveRecord::RecordNotUnique => e
-      flash[:notice] = "Sorry, an event with that attendance code already exists."
-      redirect_to consultations_url
+      rescue ActiveRecord::RecordNotUnique => e
+        flash[:notice] = "Sorry, an event with that attendance code already exists."
+        format.html { render :new, status: :unprocessable_entity }
     end
   end
 
   # PATCH/PUT /consultations/1 or /consultations/1.json
   def update
+    authorize! :read, @user
+
     begin
       respond_to do |format|
         @consultation.update(consultation_params)
-        format.html { redirect_to consultation_url(@consultation), notice: "Consultation was successfully updated." }
+        format.html { redirect_to pages_path, notice: "Consultation was successfully updated." }
         format.json { render :show, status: :created, location: @consultation }
       end
     rescue ActiveRecord::RecordNotUnique => e
@@ -65,10 +72,12 @@ class ConsultationsController < ApplicationController
 
   # DELETE /consultations/1 or /consultations/1.json
   def destroy
+    authorize! :manage, @user
+
     @consultation.destroy
 
     respond_to do |format|
-      format.html { redirect_to consultations_url, notice: "Consultation was successfully destroyed." }
+      format.html { redirect_to pages_path, notice: "Consultation was successfully destroyed." }
       format.json { head :no_content }
     end
   end

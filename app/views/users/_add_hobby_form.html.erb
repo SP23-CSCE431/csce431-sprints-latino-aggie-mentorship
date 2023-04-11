@@ -1,0 +1,5 @@
+<%= form_tag add_hobbies_path, method: :get do %>
+    <p>Hobby</p>
+    <%= text_field_tag :hobby, params[:hobby], :required => 'required' %>
+    <%= submit_tag "Submit", :name => nil %>
+<% end %>

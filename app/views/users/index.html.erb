@@ -1,8 +1,10 @@
 <%= render "dashboards/dashboard_header" %>
+
 <nav>
   <ul>
     <li class="active"><%= link_to "Manage Users", users_path %></li>
     <li><%= link_to "Calendar", pages_path %></li>
+    <li><%= link_to "Leaderboard", leader_path %></li>
   </ul>
 </nav>
 
@@ -11,31 +13,41 @@
 <div class="user-container">
   <h1>Users</h1>
 
-    <div id="users">
-      <table class="user-table"> 
-        <thead>
-          <tr>
-            <th class="user-column">First Name</th>
-            <th class="user-column">Last Name</th>
-            <th class="user-column">Email</th>
-            <th class="user-column">Role</th>
-            <th class="user-column">Year</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @users.each do |user| %>
-            <%= render partial: 'user', locals: { user: user } %>
-          <% end %>
-        </tbody>
-      </table>
+  <% if notice %>
+    <div class="flash flash__notice">
+      <%= notice %>
     </div>
+  <% end %>
 
-    <div class="new-user-button">
-      <%= link_to "New user", new_user_path %>
-    </div>
+  <div id="users">
+    <table class="user-table"> 
+      <thead>
+        <tr>
+          <th class="user-column">First Name</th>
+          <th class="user-column">Last Name</th>
+          <th class="user-column">Email</th>
+          <th class="user-column">Role</th>
+          <th class="user-column">Year</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <%= render partial: 'user', locals: { user: user } %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-    <br>
+  <br>
+
+  <div class="form-button" style="background-color:rgb(32, 154, 40)">
+    <%= link_to "Add User", new_user_path %>
+  </div>
+
+  <br>
 
 
   </div>
 </div>
+
+<%= render "dashboards/dashboard_footer" %>

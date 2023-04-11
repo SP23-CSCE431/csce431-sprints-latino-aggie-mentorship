@@ -1,0 +1,77 @@
+<%= render "dashboards/dashboard_header" %>
+
+<% if current_admin.mentor? %>
+    <nav>
+    <ul>
+        <li><%= link_to "Log Tutoring Hours", add_hours_path %></li>
+        <li><%= link_to "Add Courses to Profile", add_courses_path %></li>
+        <li><%= link_to "Add Hobbies to Profile", add_hobbies_path %></li>
+        <li><%= link_to "Calendar", pages_path %></li>
+        <li class="active"><%= link_to "Leaderboard", leaderMentor_path %></li>
+    </ul>
+    </nav>
+<% elsif current_admin.mentee? %>
+    <nav>
+    <ul>
+        <li><%= link_to "Search for Mentors", search_path %></li>
+        <li><%= link_to "Calendar", pages_path %></li>
+        <li class="active"><%= link_to "Leaderboard", leaderMentor_path %></li>
+    </ul>
+    </nav>
+<% end %>
+
+<div class="table-container">
+<h2>Mentors Leader board</h2>
+<div id="users">
+  <table>
+    <thead>
+      <tr>
+        <th class="user-column">Rank</th>
+        <th class="user-column">Name</th>
+     
+      </tr>
+    </thead>
+    <tbody>
+      <% @ranking.first(3).each do |rank| %>
+          <tr>
+            <td><%= @ranking.find_index(rank) + 1 %></td>
+            <td><%= rank[0].first_name %></td>
+          
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+</div>
+</div>
+
+
+<div class="table-container">
+<h2>Points Leader board</h2>
+<div id="users">
+  <table>
+    <thead>
+      <tr>
+        <th class="user-column">Rank</th>
+        <th class="user-column">Name</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <% @ranking2.first(3).each do |rank| %>
+          <tr>
+            <td><%= @ranking2.find_index(rank) + 1 %></td>
+            <td><%= rank[0].first_name %></td>
+       
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+</div>
+</div>
+<%= render "dashboards/dashboard_footer" %>

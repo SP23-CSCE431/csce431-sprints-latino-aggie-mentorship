@@ -7,7 +7,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
-gem "cancan"
+gem "cancancan"
 gem "rexml"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
@@ -86,6 +86,7 @@ group :test do
   gem "capybara", '>= 3.26'
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'simplecov', :require => false
 end
 
 gem "simple_calendar", "~> 2.4"

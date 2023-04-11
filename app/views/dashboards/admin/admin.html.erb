@@ -1,9 +1,13 @@
-<%= render "dashboard_header" %>
+<%= render "dashboards/dashboard_header" %>
+
 <nav>
   <ul>
     <li><%= link_to "Manage Users", users_path %></li>
     <li><%= link_to "Calendar", pages_path %></li>
+    <li><%= link_to "Leaderboard", leader_path %></li>
   </ul>
 </nav>
 
 <h1 class="landing-page">You're logged in! Welcome to the Admin Dashboard!</h1>
+
+<%= render "dashboards/dashboard_footer" %>

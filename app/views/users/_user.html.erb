@@ -1,18 +1,36 @@
-<tr id="<%= dom_id user %>">
-  <td class="user-column"><%= user.first_name %></td>
-  <td class="user-column"><%= user.last_name %></td>
-  <td class="user-column"><%= user.email %></td>
-  <td class="user-column"><%= user.role %></td>
-  <td class="user-column"><%= user.year %></td>
-  <!--<td class="user-column">
-    <p>
-      <strong>Courses taken:</strong>
-      <ul>
-        <% user.courses.each do |course| %>
-          <li><%= course.department %> <%= course.code %></li>
-        <% end %>
-      </ul>
-    </p>
-  </td>-->
-  <td><div class="form-button"><%= link_to "Edit this user", edit_user_path(user)%></div></td>
-</tr>
+<% if current_admin.mentee? %>
+  <tr id="<%= dom_id user %>">
+    <td class="user-column"><%= user.first_name %></td>
+    <td class="user-column"><%= user.last_name %></td>
+    <td class="user-column"><%= user.email %></td>
+    <td class="user-column"><%= user.role %></td>
+    <td class="user-column"><%= user.year %></td>
+    <td class="user-column">
+      <p>
+        <ul>
+          <% user.courses.each do |course| %>
+            <li><%= course.department %> <%= course.code %></li>
+          <% end %>
+        </ul>
+      </p>
+    </td>
+    <td class="user-column">
+      <p>
+        <ul>
+          <% user.hobbies.each do |hobby| %>
+            <li><%= hobby.name %></li>
+          <% end %>
+        </ul>
+      </p>
+    </td>
+  </tr>
+<% elsif current_admin.admin? %>
+  <tr id="<%= dom_id user %>">
+    <td class="user-column"><%= user.first_name %></td>
+    <td class="user-column"><%= user.last_name %></td>
+    <td class="user-column"><%= user.email %></td>
+    <td class="user-column"><%= user.role %></td>
+    <td class="user-column"><%= user.year %></td>
+    <td><div class="form-button"><%= link_to "Edit this user", edit_user_path(user) %></div></td>
+  </tr>
+<% end %>

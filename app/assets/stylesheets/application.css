@@ -14,9 +14,17 @@
  *= require_self
  */
 
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
 
 .container {
-    height: 100vh;
+    height: 120vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,10 +52,15 @@
 .landing-page {
     height: 30vh;
     text-align: center;
+    max-width: 30%;
+    margin: 0 auto;
 }
 
 .landing-page h2 {
     padding: 10%;
+}
+
+.landing-page p {
 }
 
 .sign-in-out-button {
@@ -74,6 +87,7 @@
     font-family: Arial, sans-serif;
     color: #333;
     background-color: #fff;
+    margin-bottom: 5%;
 }
 
 .calendar-title {
@@ -176,6 +190,17 @@ a.dashboard-title:hover {
   color: black;
 }
 
+.dashboard-footer {
+  padding: 3%;
+  background-color: black;
+  color: white;
+  position: relative;
+  margin-top: auto;
+  bottom: 0;
+  width: 100vw;
+  height: max-content;
+}
+
 .sign-out {
   width: 10vw;
   position: absolute;
@@ -185,6 +210,7 @@ a.dashboard-title:hover {
 
 .stats {
   padding: 3%;
+  padding-right: 25%;
 }
 
 .user-column {
@@ -239,7 +265,7 @@ nav a:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     margin: 20px auto;
     padding: 20px;
-    max-width: 600px;
+    width: 40%;
   }
   
   .form-box h1 {
@@ -264,7 +290,7 @@ nav a:hover {
     background-color: #007bff;
     border: none;
     border-radius: 5px;
-    color: rgba(255, 255, 255, 0.795);
+    color: white;
     cursor: pointer;
     font-size: 16px;
     padding: 10px 20px;
@@ -275,10 +301,10 @@ nav a:hover {
     background-color: #0069d9;
   }
 
-  .form-button {
+  .form-box button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #7fb7f3;
+    background-color: #007bff;
     color: white;
     text-align: center;
     text-decoration: none;
@@ -286,9 +312,35 @@ nav a:hover {
     border-radius: 5px;
     margin-right: 10px;
   }
-  
-  .form-button:hover {
-    background-color: #96c5f7;
+
+  .form-box button a {
+    text-decoration: none;
+    color: white;
+  }
+
+  .form-box button a:hover {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .form-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+
+  .form-button a {
+    text-decoration: none;
+    color: white;
+  }
+
+  .form-button a:hover {
+    color: rgba(255, 255, 255, 0.85);
   }
 
   /* table styling  */
@@ -308,12 +360,6 @@ nav a:hover {
     
   }
   
-  .user-column:nth-child(1) {
-    font-weight: bold;
-  }  
-  .user-column:nth-child(5) {
-    font-style: italic;
-  }
   .user-column ul {
     list-style-type: none;
     margin: 0;
@@ -378,6 +424,7 @@ nav a:hover {
     text-decoration: none;
     border-radius: 5px;
     margin-right: 10px;
+    margin-top:10px;
   }
   
   .new-user-button:hover {
@@ -385,10 +432,19 @@ nav a:hover {
   }
 
   /*leader board styling  */
-  #leaderboard {
-    margin-top: 20px;
+  #users table {
+    border: 1px solid black;
   }
-  
+.admin-table-container{
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+.table-header h2{
+  margin-left: 2rem;
+}
+  .table-container {
+    margin:auto;
+  }
   table {
     border-collapse: collapse;
     width: 100%;

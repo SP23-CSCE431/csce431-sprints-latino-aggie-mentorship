@@ -1,12 +1,19 @@
-<p style="color: green"><%= notice %></p>
+<%= render "dashboards/dashboard_header" %>
 
-<div>
-  <%= link_to "Back to users", users_path %>
-</div>
+<nav>
+  <ul>
+    <li class="active"><%= link_to "Manage Users", users_path %></li>
+    <li><%= link_to "Calendar", pages_path %></li>
+    <li><%= link_to "Leaderboard", leader_path %></li>
+  </ul>
+</nav>
 
-<%= render @user %>
 
-<div>
-  <%= button_to "Destroy this user", @user, method: :delete%>
+<div class="form-box">
+  <%= link_to "Back to Users", users_path %>
+  <p>
+  <h5>Deleting this user will destroy all of their hour and point data. Are you sure you want to proceed?</h5>
+  <p>
+  <%= button_to "Confirm", @user, method: :delete %>
 </div>
 
