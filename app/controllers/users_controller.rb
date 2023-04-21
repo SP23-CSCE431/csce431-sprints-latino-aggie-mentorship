@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         session[:user_id] = @user.id
-        format.html { redirect_to users_path, notice: "User was successfully created." }
+        format.html { redirect_to search_path, notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to users_path, notice: "User was successfully updated." }
+        format.html { redirect_to search_path, notice: "User was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { redirect_to users_url, notice: "User could not be updated. There must be at least one admin user." }
@@ -141,21 +141,39 @@ class UsersController < ApplicationController
     def search_helper(search)
       arr = search&.split
       if arr
-        arr[0] = arr[0].upcase
         alert = ""
         #if only one 'word' is searched, then search all users for matching department
         if arr.length == 1
           # find all users where the input matches the department of a course they took
-          found_users = User.joins(:courses).where(courses: {department: arr[0]})
-          alert = "Error: No user found taking a course in " + arr[0] + "."
+          dep = arr[0].upcase
+          found_users = User.joins(:courses).where(courses: {department: dep})
+          # look for one word hobby
+          found_users_hobbies = User.joins(:hobbies).where(hobbies: {name: search})
+          # # look for first name
+          # found_users_first = User.where(first_name: search)
+          # # look for last names
+          # found_users_last = User.where(last_name: search)
+          # combine active_relations variables
+          # found_users.merge(found_users_hobbies)
+          # found_users.merge(found_users_first)
+          # found_users.merge(found_users_last)
+          alert = "Error: " + arr[0] + " is not a valid department or does not exist."
         # if two separate strings are searched, then search all users for specific course (ie 'CSCE 431')
         elsif arr.length == 2
           # find all users where the input matches the department of a course they took
-          found_users = User.joins(:courses).where(courses: {department: arr[0], code: arr[1]})
-          alert = "Error: No user found taking " + arr[0] + " " + arr[1] + "."
+          dep = arr[0].upcase
+          found_users = User.joins(:courses).where(courses: {department: dep, code: arr[1]})
+          # # look for two word hobby
+          # found_users_hobbies = User.joins(:hobbies).where(hobbies: {name: search})
+          # # look for names
+          # found_users_first = User.where(first_name: arr[0], last_name: arr[1])
+          # # combine active_relations variables
+          # found_users.merge(found_users_hobbies)
+          # found_users.merge(found_users_first)
+          alert = "Error: " + arr[0] + " " + arr[1] + " is not a valid course or does not exist."
         else
           found_users = User.joins(:hobbies).where(hobbies: {name: search})
-          alert = "Error: Invalid course code or hobby does not exist. Please check your search terms for spelling."
+          alert = "Error: Invalid course code or hobby does not exist."
         end
         # check if there are no found users (then check if the search term is a hobby), else 
         if found_users.size.zero?
@@ -165,15 +183,13 @@ class UsersController < ApplicationController
             respond_to do |format|
               format.html { redirect_to search_url, alert: alert }
             end
-            found_users = User.where(role: "Mentor")
-          else
-            found_users = found_users.where(role: "Mentor")
           end
-        else
-          found_users = found_users.where(role: "Mentor")
         end
       else
-        found_users = User.where(role: "Mentor")
+        found_users = User.all
+      end
+      if current_admin.mentee?
+        found_users = found_users.where(role: "Mentor")
       end
       User.where(id: found_users)
     end

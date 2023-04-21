@@ -2,14 +2,14 @@
 
 <nav>
   <ul>
-    <li class="active"><%= link_to "Manage Users", users_path %></li>
+    <li class="active"><%= link_to "Manage Users", search_path %></li>
     <li><%= link_to "Calendar", pages_path %></li>
     <li><%= link_to "Leaderboard", leader_path %></li>
   </ul>
 </nav>
 
 <div class="form-box">
-  <%= link_to "Back to users", users_path %>
+  <%= link_to "Back to users", search_path %>
   <p>
   <h3>Edit User</h3>
   <%= render "form", user: @user %>

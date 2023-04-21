@@ -1,14 +1,24 @@
 <%= render "dashboards/dashboard_header" %>
 
-<nav>
-  <ul>
-    <li class="active"><%= link_to "Search for Mentors", search_path %></li>
-    <li><%= link_to "Calendar", pages_path %></li>
-    <li><%= link_to "Leaderboard", leaderMentor_path %></li>
-  </ul>
-</nav>
+<% if current_admin.mentee? %>
+  <nav>
+    <ul>
+      <li class="active"><%= link_to "Search for Mentors", search_path %></li>
+      <li><%= link_to "Calendar", pages_path %></li>
+      <li><%= link_to "Leaderboard", leaderMentor_path %></li>
+    </ul>
+  </nav>
+<% elsif current_admin.admin? %>
+  <nav>
+    <ul>
+      <li class="active"><%= link_to "Manage Users", search_path %></li>
+      <li><%= link_to "Calendar", pages_path %></li>
+      <li><%= link_to "Leaderboard", leader_path %></li>
+    </ul>
+  </nav>
+<% end %>
 
-<div class="stats">
+<div class="user-container">
   <%= form_tag search_path, method: :get do %>
       Search mentors by Department (CSCE, MEEN, ENGR, etc.) or by Course (CSCE 431, BUSN 101, etc.) or by Hobby:
       <%= text_field_tag :search, params[:search], :required => 'required' %>
@@ -42,7 +52,11 @@
       </table>
     </div>
     <br>
-  </div>
+    <% if current_admin.admin? %>
+      <div class="form-button" style="background-color:rgb(32, 154, 40)">
+        <%= link_to "Add User", new_user_path %>
+      </div>
+    <% end %>
   </div>
 </div>
 
