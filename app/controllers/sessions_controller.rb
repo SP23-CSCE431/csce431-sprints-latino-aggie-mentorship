@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 
         if !!@user
             session[:user_id] = @user.name
-            redirect_to users_path
+            redirect_to search_path
         else
             message = "User does not exist"
             redirect_to login_path, notice: message

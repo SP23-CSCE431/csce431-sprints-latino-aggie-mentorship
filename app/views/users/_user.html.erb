@@ -31,6 +31,24 @@
     <td class="user-column"><%= user.email %></td>
     <td class="user-column"><%= user.role %></td>
     <td class="user-column"><%= user.year %></td>
+    <td class="user-column">
+      <p>
+        <ul>
+          <% user.courses.each do |course| %>
+            <li><%= course.department %> <%= course.code %></li>
+          <% end %>
+        </ul>
+      </p>
+    </td>
+    <td class="user-column">
+      <p>
+        <ul>
+          <% user.hobbies.each do |hobby| %>
+            <li><%= hobby.name %></li>
+          <% end %>
+        </ul>
+      </p>
+    </td>
     <td><div class="form-button"><%= link_to "Edit this user", edit_user_path(user) %></div></td>
   </tr>
 <% end %>
